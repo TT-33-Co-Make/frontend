@@ -1,23 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import Signup from './components/Signup';
+
+// / / / / / Removed Reference to './logo.svg' as file doesn't exist / / / / / //
+// / / / / / Rendered Signup below to test, can remove when needed / / / / / //
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello, React!</h1>
+      <Signup />
     </div>
   );
 }
