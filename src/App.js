@@ -21,7 +21,7 @@ function App() {
       <NavBar />
 
       <Switch>
-        <Route path='/login' />
+        <Route path='/login' component={Login}/>
         <Route path='/signup' component={Signup} />
         
         <Route path='/' component={Home} />
