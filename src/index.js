@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import {BrowserRouter as Router} from 'react-router-dom';
 
-// / / / / / Removed ref to './index.css' as file doesn't exist / / / / / //
+ReactDOM.render(
+    <Router>
+        <App />
+    </Router>
+, document.getElementById('root'));
 
-ReactDOM.render(<App />, document.getElementById('root'));
