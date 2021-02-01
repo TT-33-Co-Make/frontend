@@ -1,12 +1,12 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import { Route, Switch, Redirect} from 'react-router-dom';
 
 import './App.css';
 import Signup from './components/Signup';
 
-// / / / / / Removed Reference to './logo.svg' as file doesn't exist / / / / / //
-// / / / / / Rendered Signup below to test, can remove when needed / / / / / //
+// Contexts
+import {AuthContext} from './contexts/AuthContext';
 
 // Componenets
 import Home from './components/Home'
@@ -14,19 +14,20 @@ import NavBar from './components/NavBar'
 import Login from './components/Login'
 
 function App() {
+
+
   return (
     <div className="App">
+      <AuthContext.Provider value={{}}>
+        <h1>Hello, React!</h1>
+        <NavBar />
 
-      <h1>Hello, React!</h1>
-      <NavBar />
-
-      <Switch>
-        <Route path='/login' component={Login}/>
-        <Route path='/signup' component={Signup} />
-        
-        <Route path='/' component={Home} />
-      </Switch>
-
+        <Switch>
+          <Route path='/login' component={Login}/>
+          <Route path='/signup' component={Signup} />
+          <Route path='/' component={Home} />
+        </Switch>
+      </AuthContext.Provider>
     </div>
   );
 }

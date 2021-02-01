@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import axios from 'axios';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
 
 // / / / / / Initial Values for Signup Form / / / / / //
 
@@ -14,7 +16,8 @@ export default function Signup(){
 
     // / / / / / Slice of State for User's Signup Data / / / / / //
 
-    const [signupData, setSignupData] = useState(initSignupValues)
+    const [signupData, setSignupData] = useState(initSignupValues);
+    const { push } = useHistory();
 
     // / / / / / Change Handler for Controlled Inputs / / / / / //
 
@@ -28,26 +31,16 @@ export default function Signup(){
 
     const handleSubmit = event => {
         event.preventDefault();
-
-        // const newUser = {...signupData};
-
-        // postData(newUser);
+        axios.post('https://co-make-tt-33.herokuapp.com/api/register', signupData)
+        .then(res => {
+            console.log(res);
+            push('/login');
+        })
+        .catch(err => {
+            console.log(err);
+        })
         setSignupData(initSignupValues);
     };
-
-    // / / / / / POST Request, Sends Up User Data For Reuse / / / / / //
-
-    // const postData = (newUser) => {
-    //     axios.post('https://co-make-tt-33.herokuapp.com/api/register', newUser)
-    //     .then(res => {
-    //         console.log(res);
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //     })
-    // };
-    
-    // / / / / / ^ Currently returns 401 error, leaving for later use / / / / / //
 
     return(
         <SignupForm onSubmit={handleSubmit}>

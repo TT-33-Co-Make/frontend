@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
+
 
 const initLoginValues = {
     userName: '',
@@ -11,7 +14,9 @@ const Login = () => {
 
     // / / / / / Slice of State for User's Signup Data / / / / / //
 
-        const [loginData, setLoginData] = useState(initLoginValues)
+        const [loginData, setLoginData] = useState(initLoginValues);
+        const { push } = useHistory(); 
+        //const [authorized, setAuthorized] = useState(AuthContext);
 
     // / / / / / Change Handler for Controlled Inputs / / / / / //
 
@@ -27,7 +32,7 @@ const Login = () => {
         event.preventDefault();
 
         const user = {...loginData};
-
+        console.log(loginData)
         login(user);
         setLoginData(initLoginValues);
     };
@@ -38,6 +43,7 @@ const Login = () => {
         axios.post('https://co-make-tt-33.herokuapp.com/api/login', user)
         .then(res => {
             console.log(res);
+            // push('/issues')     // Sends to the issue section peter is working on OR can send to user profile.
         })
         .catch(err => {
             console.log(err);
