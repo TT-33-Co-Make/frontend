@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Issue() {
@@ -7,13 +8,15 @@ function Issue() {
     title: '',
     description: ''
   });
+  const { id } = useParams();
 
   useEffect(() => {
     axiosWithAuth
-      .get('https://co-make-tt-33.herokuapp.com/api/issues')
+      .get(`issues/${id}`)
       .then((res) => {
-        console.log(res);
+        console.log('RETURNED ISSUE OBJECT', res);
         setIssue(res.data);
+        console.log('ISSUE STATE', issue);
       })
       .catch((err) => {
         console.log(err);
@@ -22,7 +25,8 @@ function Issue() {
 
   return (
     <IssueCard>
-      <h3>DummyTitle</h3>
+      <h3>DummyTitle{issue.title}</h3>
+      {/* <h3>{issue.title}</h3> */}
       <p>
         Solve challenges tAction Against Hunger citizenry Martin Luther King Jr.
         Combat malaria, mobilize lasting change billionaire philanthropy
@@ -34,6 +38,7 @@ function Issue() {
         Foundation committed revitalize respect. Affordable health care,
         humanitarian.
       </p>
+      {/* <p>{issue.description}</p> */}
     </IssueCard>
   );
 }
