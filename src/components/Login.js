@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import * as yup from 'yup';
+import LoginSchema from '../validation/LoginSchema';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
@@ -10,18 +12,49 @@ const initLoginValues = {
     password: ''
 };
 
+const initLoginErrors = {
+    userName: '',
+    password: ''
+}
+
+const initDisabled = true;
+
 const Login = () => {
 
     // / / / / / Slice of State for User's Signup Data / / / / / //
 
         const [loginData, setLoginData] = useState(initLoginValues);
+
         const { push } = useHistory(); 
         //const [authorized, setAuthorized] = useState(AuthContext);
 
-    // / / / / / Change Handler for Controlled Inputs / / / / / //
+
+    // / / / / / Slice of State for Form Errors / / / / / //
+
+        const [errors, setErrors] = useState(initLoginErrors);
+
+    // / / / / / Slice of State for Button Enablement / / / / / //
+
+        const [disabled, setDisabled] = useState(initDisabled);
+
+    // / / / / / Change Handler for Controlled Inputs & Validation / / / / / //
 
     const handleChange = event => {
         const { name, value } = event.target;
+
+        yup
+        .reach(LoginSchema, name)
+        .validate(value)
+        .then(() => {
+            setErrors({
+                ...errors, [name]: ''
+            });
+        })
+        .catch(err => {
+            setErrors({
+                ...errors, [name]: err.errors[0]
+            });
+        });
 
         setLoginData({...loginData, [name]: value});
     };
@@ -31,13 +64,16 @@ const Login = () => {
     const handleSubmit = event => {
         event.preventDefault();
 
+
         const user = {...loginData};
         console.log(loginData)
         login(user);
+
         setLoginData(initLoginValues);
     };
 
-    // / / / / / POST Request for Login / / / / / //
+    // / / / / / Button Disabled status handler / / / / / //
+
 
     const login = (user) => {
         axios.post('https://co-make-tt-33.herokuapp.com/api/login', user)
@@ -47,8 +83,24 @@ const Login = () => {
         })
         .catch(err => {
             console.log(err);
+
+    useEffect(() => {
+        LoginSchema.isValid(loginData).then(valid => {
+            setDisabled(!valid);
         })
-    }
+    }, [loginData]);
+
+    // / / / / / POST Request for Login / / / / / //
+
+    // const login = (user) => {
+    //     axios.post('https://co-make-tt-33.herokuapp.com/api/login', user)
+    //     .then(res => {
+    //         console.log(res);
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
+    // }
 
     // / / / / / Above currently returning 401 error - leaving for later use / / / / / //
 
@@ -56,6 +108,7 @@ const Login = () => {
     return(
         <LoginForm onSubmit={handleSubmit}>
             <label>User Name / Email: <br />
+                <Error>{errors.userName}</Error> <br />
                 <input
                 type='text'
                 name='userName'
@@ -64,6 +117,7 @@ const Login = () => {
             </label>
 
             <label>Password: <br />
+                <Error>{errors.password}</Error> <br />
                 <input
                 type='password'
                 name='password'
@@ -107,4 +161,8 @@ const LoginForm = styled.form`
             box-shadow: none;
         }
     }
+`
+
+const Error = styled.span`
+    color: red;
 `
