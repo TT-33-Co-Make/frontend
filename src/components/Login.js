@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import * as yup from 'yup';
 import LoginSchema from '../validation/LoginSchema';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
+
 
 const initLoginValues = {
     userName: '',
@@ -21,6 +24,10 @@ const Login = () => {
     // / / / / / Slice of State for User's Signup Data / / / / / //
 
         const [loginData, setLoginData] = useState(initLoginValues);
+
+        const { push } = useHistory(); 
+        //const [authorized, setAuthorized] = useState(AuthContext);
+
 
     // / / / / / Slice of State for Form Errors / / / / / //
 
@@ -57,13 +64,25 @@ const Login = () => {
     const handleSubmit = event => {
         event.preventDefault();
 
-        // const user = {...loginData};
 
-        // login(user);
+        const user = {...loginData};
+        console.log(loginData)
+        login(user);
+
         setLoginData(initLoginValues);
     };
 
     // / / / / / Button Disabled status handler / / / / / //
+
+
+    const login = (user) => {
+        axios.post('https://co-make-tt-33.herokuapp.com/api/login', user)
+        .then(res => {
+            console.log(res);
+            // push('/issues')     // Sends to the issue section peter is working on OR can send to user profile.
+        })
+        .catch(err => {
+            console.log(err);
 
     useEffect(() => {
         LoginSchema.isValid(loginData).then(valid => {

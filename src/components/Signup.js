@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
+
 import * as yup from 'yup';
 import SignupSchema from '../validation/SignupSchema';
-// import axios from 'axios';
+
 
 // / / / / / Initial Values for Signup Form / / / / / //
 
@@ -24,7 +29,8 @@ export default function Signup(){
 
     // / / / / / Slice of State for User's Signup Data / / / / / //
 
-    const [signupData, setSignupData] = useState(initSignupValues)
+    const [signupData, setSignupData] = useState(initSignupValues);
+    const { push } = useHistory();
 
     // / / / / / Slice of State for Form Errors / / / / / //
 
@@ -60,12 +66,17 @@ export default function Signup(){
 
     const handleSubmit = event => {
         event.preventDefault();
-
-        // const newUser = {...signupData};
-
-        // postData(newUser);
+        axios.post('https://co-make-tt-33.herokuapp.com/api/register', signupData)
+        .then(res => {
+            console.log(res);
+            push('/login');
+        })
+        .catch(err => {
+            console.log(err);
+        })
         setSignupData(initSignupValues);
     };
+
 
     // / / / / / Button Disabled status handler / / / / / //
 
@@ -88,6 +99,7 @@ export default function Signup(){
     // };
     
     // / / / / / ^ Currently returns 401 error, leaving for later use / / / / / //
+
 
     return(
         <SignupForm onSubmit={handleSubmit}>
