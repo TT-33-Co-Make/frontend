@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import * as yup from 'yup';
+import SignupSchema from '../validation/SignupSchema';
 // import axios from 'axios';
 
 // / / / / / Initial Values for Signup Form / / / / / //
@@ -10,16 +12,46 @@ const initSignupValues = {
     password: ''
 }
 
+const initSignupErrors = {
+    email: '',
+    userName: '',
+    password: ''
+}
+
+const initDisabled = true;
+
 export default function Signup(){
 
     // / / / / / Slice of State for User's Signup Data / / / / / //
 
     const [signupData, setSignupData] = useState(initSignupValues)
 
-    // / / / / / Change Handler for Controlled Inputs / / / / / //
+    // / / / / / Slice of State for Form Errors / / / / / //
+
+    const [errors, setErrors] = useState(initSignupErrors);
+
+    // / / / / / Slice of State for Button Enablement / / / / / //
+
+    const [disabled, setDisabled] = useState(initDisabled);
+
+    // / / / / / Change Handler for Controlled Inputs & Validation / / / / / //
 
     const handleChange = event => {
         const { name, value } = event.target;
+
+        yup
+        .reach(SignupSchema, name)
+        .validate(value)
+        .then(() => {
+            setErrors({
+                ...errors, [name]: ''
+            })
+        })
+        .catch(err => {
+            setErrors({
+                ...errors, [name]: err.errors[0]
+            });
+        });
 
         setSignupData({...signupData, [name]: value});
     };
@@ -34,6 +66,14 @@ export default function Signup(){
         // postData(newUser);
         setSignupData(initSignupValues);
     };
+
+    // / / / / / Button Disabled status handler / / / / / //
+
+    useEffect(() => {
+        SignupSchema.isValid(signupData).then(valid => {
+            setDisabled(!valid);
+        })
+    }, [signupData]);
 
     // / / / / / POST Request, Sends Up User Data For Reuse / / / / / //
 
@@ -51,7 +91,9 @@ export default function Signup(){
 
     return(
         <SignupForm onSubmit={handleSubmit}>
+            
             <label>Email: <br />
+                <Error>{errors.email}</Error> <br />
                 <input
                 type='email'
                 name='email'
@@ -60,6 +102,7 @@ export default function Signup(){
             </label>
 
             <label>User Name: <br />
+                <Error>{errors.userName}</Error> <br />
                 <input
                 type='text'
                 name='userName'
@@ -68,13 +111,14 @@ export default function Signup(){
             </label>
 
             <label>Password: <br />
+                <Error>{errors.password}</Error> <br />
                 <input
                 type='password'
                 name='password'
                 value={signupData.password}
                 onChange={handleChange} />
             </label>
-            <button>Sign Me Up!</button>
+            <button disabled={disabled}>Sign Me Up!</button>
         </SignupForm>
     )
 }
@@ -109,4 +153,8 @@ const SignupForm = styled.form`
             box-shadow: none;
         }
     }
+`
+
+const Error = styled.span`
+    color: red;
 `
