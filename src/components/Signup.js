@@ -102,6 +102,7 @@ export default function Signup(){
 
 
     return(
+    <SignUpDiv>
         <SignupForm onSubmit={handleSubmit}>
             
             <label>Email: <br />
@@ -132,11 +133,18 @@ export default function Signup(){
             </label>
             <button >Sign Me Up!</button>
         </SignupForm>
+    </SignUpDiv>
     )
 }
 
 // / / / / / Basic Styles for Signup Form Alone / / / / / //
 // / / / / / Using PX Until Confirmed Exact Usage of Responsive Units / / / / / //
+
+const SignUpDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 30px 3%;
+`
 
 const SignupForm = styled.form`
     width: 50%;

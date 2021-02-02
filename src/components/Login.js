@@ -78,6 +78,7 @@ const Login = () => {
         axios.post('https://comake-backend-lambda.herokuapp.com/api/login', user)
         .then(res => {
             console.log(res);
+            localStorage.setItem('token', res.data.payload)
             push('/issues')
         })
         .catch(err => {
@@ -100,6 +101,7 @@ const Login = () => {
 
 
     return(
+    <LoginDiv>
         <LoginForm onSubmit={handleSubmit}>
             <label>User Name / Email: <br />
                 <Error>{errors.username}</Error> <br />
@@ -120,11 +122,17 @@ const Login = () => {
             </label>
             <button>Sign Me Up!</button>
         </LoginForm>
+    </LoginDiv>
     )
 }
 
 export default Login;
 
+const LoginDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 30px 3%;
+`
 
 const LoginForm = styled.form`
     width: 50%;

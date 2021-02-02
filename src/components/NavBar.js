@@ -1,8 +1,12 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import styled from 'styled-components'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faDove } from '@fortawesome/free-solid-svg-icons'
+// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+// import { faDove } from '@fortawesome/free-solid-svg-icons'
+
+// Utils
+import axiosWithAuth from '../utils/axiosWithAuth'
+
 const NavBarStyled = styled.div` 
     margin: 0 30px;
     border: 1px solid black;
@@ -26,22 +30,31 @@ const NavBarStyled = styled.div`
 `;
 const NavBar = () => {
 
+    const { push } = useHistory();
+
+    const logout = () => {
+        axiosWithAuth()
+          .post('/logout')
+          .then(res=>{
+            localStorage.removeItem('token');
+            push('/login');
+          })
+          .catch(err=>{
+            console.log(err);
+          })
+      };
+
     return(
-        <NavBarStyled>
-            <div className='logo'>
-             <h1>Co-Make</h1>
-            </div>
-            <nav className='navBar'>
+        <div>
+            <NavBarStyled className='navBar'>
                 <ul className='navList'>
-                <li>  <a className="navHome" href='/'>Home</a></li>
-                  <li> <a className="navLogin" href='/login'>Login</a></li> 
-                   <li> <a className="navSignUp" href='/signup'>Sign Up</a></li>
-                   <li> <a className="navSignUp" href='/signup'>About</a></li>
-                   <li> <a className="navSignUp" href='/developers'>Developers</a></li>
-                 <li>  <a className="navSignUp" href='/issues'>Issues</a></li>
+                    <Link className="navHome" to='/'><li>Home</li></Link>
+                    <Link className="navLogin" to='/login'><li>Login</li></Link>
+                    <Link className="navSignUp" to='/signup'><li>SignUp</li></Link>
+                    <Link className="developers" to='/developers'><li>Developers</li></Link>
                 </ul>
-            </nav>
-        </NavBarStyled>
+            </NavBarStyled>
+        </div>
     )
 }
 

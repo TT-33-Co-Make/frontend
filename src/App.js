@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-
+import { Route, Switch, Redirect, } from 'react-router-dom';
 import './App.css';
-import Signup from './components/Signup';
 
 // Contexts
 import { AuthContext } from './contexts/AuthContext';
 
-// Componenets
+// Components
 
+import Signup from './components/Signup';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
