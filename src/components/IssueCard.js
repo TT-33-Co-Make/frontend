@@ -3,9 +3,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Issue({ issue }) {
+  const handleClick = () => {
+    //redirect to Issue.js
+  };
+
   return (
-    <IssueCard>
-      <h3>DummyTitle{issue.title}</h3>
+    <IssueCard onClick={handleClick}>
+      <h3>DummyTitle</h3>
       {/* <h3>{issue.title}</h3> */}
       <p>
         Solve challenges Action Against Hunger citizenry Martin Luther King Jr.
@@ -27,5 +31,7 @@ export default Issue;
 
 const IssueCard = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  cursor: pointer;
 `;

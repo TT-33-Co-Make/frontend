@@ -19,13 +19,19 @@ function IssuePage() {
   }, []);
   return (
     <IssueList>
-      {issuesList.map((issue) => {
+      {/* {issuesList.map((issue) => {
         return <IssueCard key={issue.id} issue={issue} />;
-      })}
+      })} */}
+      <IssueCard />
     </IssueList>
   );
 }
 
 export default IssuePage;
 
-const IssueList = styled.div``;
+const IssueList = styled.div`
+  border: 2px solid black;
+  width: 80%;
+  margin: 2% auto;
+  padding: 2%;
+`;
