@@ -25,6 +25,7 @@ const NavBarStyled = styled.div`
     }
 `;
 const NavBar = () => {
+
     return(
         <NavBarStyled>
             <div className='logo'>
@@ -37,10 +38,11 @@ const NavBar = () => {
                    <li> <a className="navSignUp" href='/signup'>Sign Up</a></li>
                    <li> <a className="navSignUp" href='/signup'>About</a></li>
                    <li> <a className="navSignUp" href='/developers'>Developers</a></li>
-                 <li>  <a className="navSignUp" href='/signup'>Issues</a></li>
+                 <li>  <a className="navSignUp" href='/issues'>Issues</a></li>
                 </ul>
             </nav>
         </NavBarStyled>
     )
 }
+
 export default NavBar;
