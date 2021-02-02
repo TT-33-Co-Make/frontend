@@ -12,6 +12,7 @@ import {AuthContext} from './contexts/AuthContext';
 import Home from './components/Home'
 import NavBar from './components/NavBar'
 import Login from './components/Login'
+import Developers from './components/Developers';
 
 function App() {
 
@@ -22,7 +23,9 @@ function App() {
         <NavBar />
 
         <Switch>
-          <Route path='/developers'/>
+          <Route path='/developers'>
+            <Developers />
+          </Route>
           <Route path='/login' component={Login}/>
           <Route path='/signup' component={Signup} />
           <Route path='/' component={Home} />
