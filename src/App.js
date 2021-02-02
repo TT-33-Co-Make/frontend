@@ -11,7 +11,7 @@ import { AuthContext } from './contexts/AuthContext';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
-// import IssuePage from './components/IssuePage';
+import IssueList from './components/IssueList';
 
 function App() {
   return (
@@ -21,7 +21,8 @@ function App() {
         <NavBar />
 
         <Switch>
-          <a href="/issues">Issue List</a>
+          {/* <a href="/issues">Issue List</a> */}
+          <Route path="/issues" component={IssueList} />
           <Route path="/developers" />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
