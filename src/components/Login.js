@@ -75,14 +75,7 @@ const Login = () => {
     // / / / / / Button Disabled status handler / / / / / //
 
 
-    const login = (user) => {
-        axios.post('https://co-make-tt-33.herokuapp.com/api/login', user)
-        .then(res => {
-            console.log(res);
-            // push('/issues')     // Sends to the issue section peter is working on OR can send to user profile.
-        })
-        .catch(err => {
-            console.log(err);
+    
 
     useEffect(() => {
         LoginSchema.isValid(loginData).then(valid => {
@@ -92,15 +85,16 @@ const Login = () => {
 
     // / / / / / POST Request for Login / / / / / //
 
-    // const login = (user) => {
-    //     axios.post('https://co-make-tt-33.herokuapp.com/api/login', user)
-    //     .then(res => {
-    //         console.log(res);
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //     })
-    // }
+    const login = (user) => {
+        axios.post('https://co-make-tt-33.herokuapp.com/api/login', user)
+        .then(res => {
+            console.log(res);
+            push('/issues')
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
 
     // / / / / / Above currently returning 401 error - leaving for later use / / / / / //
 
@@ -131,8 +125,6 @@ const Login = () => {
 
 export default Login;
 
-// / / / / / Basic Styles for Login Form Alone / / / / / //
-// / / / / / Using PX Until Confirmed Exact Usage of Responsive Units / / / / / //
 
 const LoginForm = styled.form`
     width: 50%;
