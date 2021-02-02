@@ -8,10 +8,12 @@ import Signup from './components/Signup';
 import { AuthContext } from './contexts/AuthContext';
 
 // Componenets
+
 import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
 import IssueList from './components/IssueList';
+import Developers from './components/Developers';
 
 function App() {
 
@@ -22,12 +24,16 @@ function App() {
         <NavBar />
 
         <Switch>
+
           {/* <a href="/issues">Issue List</a> */}
           <Route path="/issues" component={IssueList} />
-          <Route path="/developers" />
+          <Route path='/developers'>
+            <Developers />
+          </Route>
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/" component={Home} />
+
         </Switch>
       </AuthContext.Provider>
     </div>
