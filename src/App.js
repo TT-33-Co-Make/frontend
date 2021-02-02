@@ -18,9 +18,6 @@ function App() {
   return (
     <div className="App">
       <AuthContext.Provider value={{}}>
-        <h1>Hello, React!</h1>
-        <NavBar />
-
         <Switch>
           <Route path='/developers'/>
           <Route path='/login' component={Login}/>

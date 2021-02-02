@@ -1,40 +1,33 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
-import styled from 'styled-components'
+import NavBarStyled from '../styles/NavBarStyled'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faDove } from '@fortawesome/free-solid-svg-icons'
 
-const NavBarStyled = styled.div` 
-    border: 1px solid black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .navList {
-        list-style: none;
-        display: flex;
-        justify-content: space-evenly;
-    }
-    .navList a {
-        text-decoration: none;
-        color: black;
-        padding: 0 50px;
-        font-size: 1rem;
-    }
-    .logo {
-        align-items: center;
-        display: flex;
-        border: 1px solid black;
-        flex: 1;
-    }
-    .i {
-      font-size: 30px;
-    }
-`;
+const onScroll = (e) => {
+
+    const navbar = e.target.name
+    console.log(navbar)
+
+    if(this.oldScroll > this.scrollY) {
+        if(window.pageYOffset === 0)
+         navbar.classList.add('top');
+          navbar.style.transform = 'translateY(0px)'
+
+     } else {
+         
+             navbar.classList.remove('top');
+             navbar.style.transform = 'translateY(-70px)'
+
+     }
+  
+     this.oldScroll = this.scrollY;
+    
+}
 
 const NavBar = () => {
 
     return(
-        <NavBarStyled>
+        <NavBarStyled onScroll={onScroll}>
             <div className='logo'>
              <FontAwesomeIcon icon={faDove} className='i'/><h1>Co-Make</h1>
             </div>
