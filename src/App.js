@@ -16,15 +16,12 @@ import Login from './components/Login'
 function App() {
   return (
     <div className="App">
-
-      <h1>Hello, React!</h1>
       <NavBar />
-
       <Switch>
-        <Route path='/login' component={Login}/>
-        <Route path='/signup' component={Signup} />
+        <Route exact path='/login' component={Login}/>
+        <Route exact path='/signup' component={Signup} />
         
-        <Route path='/' component={Home} />
+        <Route exact path='/' component={Home} />
       </Switch>
 
     </div>
