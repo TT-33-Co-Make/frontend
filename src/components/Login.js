@@ -1,48 +1,100 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import * as yup from 'yup';
+import LoginSchema from '../validation/LoginSchema';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
+
 
 const initLoginValues = {
-    userName: '',
+    username: '',
     password: ''
 };
+
+const initLoginErrors = {
+    username: '',
+    password: ''
+}
+
+const initDisabled = true;
 
 const Login = () => {
 
     // / / / / / Slice of State for User's Signup Data / / / / / //
 
-        const [loginData, setLoginData] = useState(initLoginValues)
+        const [loginData, setLoginData] = useState(initLoginValues);
 
-    // / / / / / Change Handler for Controlled Inputs / / / / / //
+        const { push } = useHistory(); 
+        //const [authorized, setAuthorized] = useState(AuthContext);
+
+
+    // / / / / / Slice of State for Form Errors / / / / / //
+
+        const [errors, setErrors] = useState(initLoginErrors);
+
+    // / / / / / Slice of State for Button Enablement / / / / / //
+
+        const [disabled, setDisabled] = useState(initDisabled);
+
+    // / / / / / Change Handler for Controlled Inputs & Validation / / / / / //
 
     const handleChange = event => {
         const { name, value } = event.target;
 
+        yup
+        .reach(LoginSchema, name)
+        .validate(value)
+        .then(() => {
+            setErrors({
+                ...errors, [name]: ''
+            });
+        })
+        .catch(err => {
+            setErrors({
+                ...errors, [name]: err.errors[0]
+            });
+        });
+
         setLoginData({...loginData, [name]: value});
     };
+
+    
+
+    // / / / / / Button Disabled status handler / / / / / //
+
+
+    
+
+    useEffect(() => {
+        LoginSchema.isValid(loginData).then(valid => {
+            setDisabled(!valid);
+        })
+    }, [loginData]);
+
+    // / / / / / POST Request for Login / / / / / //
+
+    const login = (user) => {
+        axios.post('https://comake-backend-lambda.herokuapp.com/api/login', user)
+        .then(res => {
+            console.log(res);
+            push('/issues')
+        })
+        .catch(err => {
+            console.log(err,'ERROR');
+        })
+    }
 
     // / / / / / Submit Handler for Login Functionality / / / / / //
 
     const handleSubmit = event => {
         event.preventDefault();
-
         const user = {...loginData};
-
+        console.log(loginData)
         login(user);
+
         setLoginData(initLoginValues);
     };
-
-    // / / / / / POST Request for Login / / / / / //
-
-    const login = (user) => {
-        axios.post('https://co-make-tt-33.herokuapp.com/api/login', user)
-        .then(res => {
-            console.log(res);
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
 
     // / / / / / Above currently returning 401 error - leaving for later use / / / / / //
 
@@ -50,14 +102,16 @@ const Login = () => {
     return(
         <LoginForm onSubmit={handleSubmit}>
             <label>User Name / Email: <br />
+                <Error>{errors.username}</Error> <br />
                 <input
                 type='text'
-                name='userName'
-                value={loginData.userName}
+                name='username'
+                value={loginData.username}
                 onChange={handleChange} />
             </label>
 
             <label>Password: <br />
+                <Error>{errors.password}</Error> <br />
                 <input
                 type='password'
                 name='password'
@@ -71,8 +125,6 @@ const Login = () => {
 
 export default Login;
 
-// / / / / / Basic Styles for Login Form Alone / / / / / //
-// / / / / / Using PX Until Confirmed Exact Usage of Responsive Units / / / / / //
 
 const LoginForm = styled.form`
     width: 50%;
@@ -101,4 +153,8 @@ const LoginForm = styled.form`
             box-shadow: none;
         }
     }
+`
+
+const Error = styled.span`
+    color: red;
 `

@@ -1,25 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-// import axios from 'axios';
+
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
+
+import * as yup from 'yup';
+import SignupSchema from '../validation/SignupSchema';
+
 
 // / / / / / Initial Values for Signup Form / / / / / //
 
 const initSignupValues = {
     email: '',
-    userName: '',
+    username: '',
     password: ''
 }
+
+const initSignupErrors = {
+    email: '',
+    username: '',
+    password: ''
+}
+
+const initDisabled = true;
 
 export default function Signup(){
 
     // / / / / / Slice of State for User's Signup Data / / / / / //
 
-    const [signupData, setSignupData] = useState(initSignupValues)
+    const [signupData, setSignupData] = useState(initSignupValues);
+    const { push } = useHistory();
 
-    // / / / / / Change Handler for Controlled Inputs / / / / / //
+    // / / / / / Slice of State for Form Errors / / / / / //
+
+    const [errors, setErrors] = useState(initSignupErrors);
+
+    // / / / / / Slice of State for Button Enablement / / / / / //
+
+    const [disabled, setDisabled] = useState(initDisabled);
+
+    // / / / / / Change Handler for Controlled Inputs & Validation / / / / / //
 
     const handleChange = event => {
         const { name, value } = event.target;
+
+        yup
+        .reach(SignupSchema, name)
+        .validate(value)
+        .then(() => {
+            setErrors({
+                ...errors, [name]: ''
+            })
+        })
+        .catch(err => {
+            setErrors({
+                ...errors, [name]: err.errors[0]
+            });
+        });
 
         setSignupData({...signupData, [name]: value});
     };
@@ -28,12 +66,25 @@ export default function Signup(){
 
     const handleSubmit = event => {
         event.preventDefault();
-
-        // const newUser = {...signupData};
-
-        // postData(newUser);
+        axios.post('https://co-make-tt-33.herokuapp.com/api/register', signupData)
+        .then(res => {
+            console.log(res);
+            push('/login');
+        })
+        .catch(err => {
+            console.log(err);
+        })
         setSignupData(initSignupValues);
     };
+
+
+    // / / / / / Button Disabled status handler / / / / / //
+
+    useEffect(() => {
+        SignupSchema.isValid(signupData).then(valid => {
+            setDisabled(!valid);
+        })
+    }, [signupData]);
 
     // / / / / / POST Request, Sends Up User Data For Reuse / / / / / //
 
@@ -49,9 +100,12 @@ export default function Signup(){
     
     // / / / / / ^ Currently returns 401 error, leaving for later use / / / / / //
 
+
     return(
         <SignupForm onSubmit={handleSubmit}>
+            
             <label>Email: <br />
+                <Error>{errors.email}</Error> <br />
                 <input
                 type='email'
                 name='email'
@@ -60,21 +114,23 @@ export default function Signup(){
             </label>
 
             <label>User Name: <br />
+                <Error>{errors.username}</Error> <br />
                 <input
                 type='text'
-                name='userName'
-                value={signupData.userName}
+                name='username'
+                value={signupData.username}
                 onChange={handleChange} />
             </label>
 
             <label>Password: <br />
+                <Error>{errors.password}</Error> <br />
                 <input
                 type='password'
                 name='password'
                 value={signupData.password}
                 onChange={handleChange} />
             </label>
-            <button>Sign Me Up!</button>
+            <button >Sign Me Up!</button>
         </SignupForm>
     )
 }
@@ -109,4 +165,8 @@ const SignupForm = styled.form`
             box-shadow: none;
         }
     }
+`
+
+const Error = styled.span`
+    color: red;
 `
