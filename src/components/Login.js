@@ -8,12 +8,12 @@ import { AuthContext } from '../contexts/AuthContext';
 
 
 const initLoginValues = {
-    userName: '',
+    username: '',
     password: ''
 };
 
 const initLoginErrors = {
-    userName: '',
+    username: '',
     password: ''
 }
 
@@ -59,18 +59,7 @@ const Login = () => {
         setLoginData({...loginData, [name]: value});
     };
 
-    // / / / / / Submit Handler for Login Functionality / / / / / //
-
-    const handleSubmit = event => {
-        event.preventDefault();
-
-
-        const user = {...loginData};
-        console.log(loginData)
-        login(user);
-
-        setLoginData(initLoginValues);
-    };
+    
 
     // / / / / / Button Disabled status handler / / / / / //
 
@@ -86,15 +75,26 @@ const Login = () => {
     // / / / / / POST Request for Login / / / / / //
 
     const login = (user) => {
-        axios.post('https://co-make-tt-33.herokuapp.com/api/login', user)
+        axios.post('https://comake-backend-lambda.herokuapp.com/api/login', user)
         .then(res => {
             console.log(res);
             push('/issues')
         })
         .catch(err => {
-            console.log(err);
+            console.log(err,'ERROR');
         })
     }
+
+    // / / / / / Submit Handler for Login Functionality / / / / / //
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        const user = {...loginData};
+        console.log(loginData)
+        login(user);
+
+        setLoginData(initLoginValues);
+    };
 
     // / / / / / Above currently returning 401 error - leaving for later use / / / / / //
 
@@ -102,11 +102,11 @@ const Login = () => {
     return(
         <LoginForm onSubmit={handleSubmit}>
             <label>User Name / Email: <br />
-                <Error>{errors.userName}</Error> <br />
+                <Error>{errors.username}</Error> <br />
                 <input
                 type='text'
-                name='userName'
-                value={loginData.userName}
+                name='username'
+                value={loginData.username}
                 onChange={handleChange} />
             </label>
 
