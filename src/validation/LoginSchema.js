@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 
 export default yup.object().shape({
-    userName: yup
+    username: yup
     .string()
     .required('User Name required to log in'),
 

@@ -13,13 +13,13 @@ import SignupSchema from '../validation/SignupSchema';
 
 const initSignupValues = {
     email: '',
-    userName: '',
+    username: '',
     password: ''
 }
 
 const initSignupErrors = {
     email: '',
-    userName: '',
+    username: '',
     password: ''
 }
 
@@ -114,11 +114,11 @@ export default function Signup(){
             </label>
 
             <label>User Name: <br />
-                <Error>{errors.userName}</Error> <br />
+                <Error>{errors.username}</Error> <br />
                 <input
                 type='text'
-                name='userName'
-                value={signupData.userName}
+                name='username'
+                value={signupData.username}
                 onChange={handleChange} />
             </label>
 
@@ -130,7 +130,7 @@ export default function Signup(){
                 value={signupData.password}
                 onChange={handleChange} />
             </label>
-            <button disabled={disabled}>Sign Me Up!</button>
+            <button >Sign Me Up!</button>
         </SignupForm>
     )
 }

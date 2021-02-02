@@ -6,7 +6,7 @@ export default yup.object().shape({
     .email('Must be a valid email address')
     .required('Email address is required'),
 
-    userName: yup
+    username: yup
     .string()
     .required('User Name is required')
     .min(3, 'User Name must be at least 3 chars long'),
