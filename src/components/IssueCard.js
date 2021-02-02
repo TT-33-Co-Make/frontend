@@ -2,13 +2,13 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-function Issue({ issue }) {
+function IssueCard({ issue }) {
   const handleClick = () => {
-    //redirect to Issue.js
+    //redirect to Issue.js to show individual card
   };
 
   return (
-    <IssueCard onClick={handleClick}>
+    <StyledIssueCard onClick={handleClick}>
       <h3>DummyTitle</h3>
       {/* <h3>{issue.title}</h3> */}
       <p>
@@ -23,15 +23,21 @@ function Issue({ issue }) {
         humanitarian.
       </p>
       {/* <p>{issue.description}</p> */}
-    </IssueCard>
+    </StyledIssueCard>
   );
 }
 
-export default Issue;
+export default IssueCard;
 
-const IssueCard = styled.div`
+const StyledIssueCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
+
+  h3 {
+    border-bottom: 2px solid slategray;
+    margin-bottom: 1%;
+    padding: 3%;
+  }
 `;

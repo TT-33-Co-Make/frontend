@@ -20,7 +20,7 @@ function IssuePage() {
   return (
     <IssueList>
       {/* {issuesList.map((issue) => {
-        return <IssueCard key={issue.id} issue={issue} />;
+        return <IssueCard key={issue.user_id} issue={issue} />;
       })} */}
       <IssueCard />
     </IssueList>
@@ -34,4 +34,9 @@ const IssueList = styled.div`
   width: 80%;
   margin: 2% auto;
   padding: 2%;
+  box-shadow: 
+      /* top */ rgba(0, 0, 0, 0.1) 0px -6px 10px,
+    /* right */ rgba(0, 0, 0, 0.1) 6px 0px 10px,
+    /* bottom */ rgba(0, 0, 0, 0.1) 0px 6px 10px,
+    /* left */ rgba(0, 0, 0, 0.1) -6px 0px 10px;
 `;
