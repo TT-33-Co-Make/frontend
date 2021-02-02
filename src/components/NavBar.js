@@ -5,7 +5,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faDove } from '@fortawesome/free-solid-svg-icons'
 
 const NavBarStyled = styled.div` 
-    margin: 0 30px;
     border: 1px solid black;
     display: flex;
     justify-content: space-between;
@@ -21,8 +20,14 @@ const NavBarStyled = styled.div`
         padding: 0 50px;
         font-size: 1rem;
     }
-    .logo{
-       padding-left: 20px;
+    .logo {
+        align-items: center;
+        display: flex;
+        border: 1px solid black;
+        flex: 1;
+    }
+    .i {
+      font-size: 30px;
     }
 `;
 
@@ -31,10 +36,19 @@ const NavBar = () => {
     return(
         <NavBarStyled>
             <div className='logo'>
-             <h1>Co-Make</h1>
+             <FontAwesomeIcon icon={faDove} className='i'/><h1>Co-Make</h1>
             </div>
             <nav className='navBar'>
                 <ul className='navList'>
+                <li>  <a className="navHome" href='/'>Home</a></li>
+                  <li> <a className="navLogin" href='/login'>Login</a></li> 
+                   <li> <a className="navSignUp" href='/signup'>Sign Up</a></li>
+                   <li> <a className="navSignUp" href='/about'>About</a></li>
+                 <li>  <a className="navSignUp" href='/issues'>Issues</a></li>
+
+                </ul>
+            </nav>
+        </NavBarStyled>
     )
 }
 
