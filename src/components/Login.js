@@ -66,8 +66,6 @@ const Login = () => {
     });
   }, [loginData]);
 
-  // / / / / / POST Request for Login / / / / / //
-
   const login = (user) => {
     axios
       .post('https://comake-backend-lambda.herokuapp.com/api/login', user)

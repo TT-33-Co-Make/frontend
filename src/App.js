@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Route, Switch, Redirect, } from 'react-router-dom';
 import './App.css';
+import Footer from './components/Footer';
 
 // Contexts
 import { AuthContext } from './contexts/AuthContext';
@@ -19,9 +20,6 @@ function App() {
   return (
     <div className="App">
       <AuthContext.Provider value={{}}>
-        <h1>Hello, React!</h1>
-        <NavBar />
-
         <Switch>
 
           {/* <a href="/issues">Issue List</a> */}
@@ -34,6 +32,7 @@ function App() {
           <Route path="/" component={Home} />
 
         </Switch>
+        <Footer/>
       </AuthContext.Provider>
     </div>
   );
