@@ -19,9 +19,12 @@ function IssuePage() {
   }, []);
   return (
     <IssueList>
+      <h2>List of Issues</h2>
+      <hr id="titleHr" />
       {issuesList.map((issue) => {
         return <IssueCard key={issue.id} issue={issue} />;
       })}
+      {/* <IssueCard /> */}
     </IssueList>
   );
 }
@@ -29,23 +32,22 @@ function IssuePage() {
 export default IssuePage;
 
 const IssueList = styled.div`
-  border: 2px solid black;
-  width: 80%;
-  margin: 2% auto;
-  padding: 1% 2%;
-  background-color: #28a745;
-  box-shadow: 
-    /* top */ rgba(0, 0, 0, 0.2) 0px -6px 10px,
-    /* right */ rgba(0, 0, 0, 0.2) 6px 0px 10px,
-    /* bottom */ rgba(0, 0, 0, 0.2) 0px 6px 10px,
-    /* left */ rgba(0, 0, 0, 0.2) -6px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4%;
+  background-color: #333333;
 
-  :hover {
-    transition: 0.4s ease-in-out;
-    box-shadow: 
-      /* top */ rgba(0, 0, 0, 0.5) 0px -6px 20px,
-      /* right */ rgba(0, 0, 0, 0.5) 6px 0px 20px,
-      /* bottom */ rgba(0, 0, 0, 0.5) 0px 6px 20px,
-      /* left */ rgba(0, 0, 0, 0.5) -6px 0px 20px;
+  h2 {
+    color: whitesmoke;
+    font-size: 2rem;
+  }
+
+  #titleHr {
+    width: 92%;
+    margin: 2% auto;
+    background-color: #28a745;
+    height: 6px;
+    border-color: #28a745;
   }
 `;
