@@ -5,6 +5,8 @@ import LoginSchema from '../validation/LoginSchema';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import NavBar from './NavBar';
+import StyledButton from '../styles/StyledButton'
 
 const initLoginValues = {
   username: '',
@@ -93,7 +95,13 @@ const Login = () => {
   // / / / / / Above currently returning 401 error - leaving for later use / / / / / //
 
   return (
+    <>
+      <NavBar />
+    
     <LoginDiv>
+    <div className='text'>
+      <h2>Log in here!</h2>
+    </div>
               
       <LoginForm onSubmit={handleSubmit}>
         <label>
@@ -101,7 +109,7 @@ const Login = () => {
           <Error>{errors.username}</Error> <br />
                           
           <input
-            type="text"
+            // type="text"
             name="username"
             value={loginData.username}
             onChange={handleChange}
@@ -121,19 +129,39 @@ const Login = () => {
           />
                       
         </label>
-        <button>Sign Me Up!</button>
+        <StyledButton disabled={disabled}>Sign Me Up!</StyledButton>
                 
       </LoginForm>
     </LoginDiv>
+    </>
   );
 };
 
 export default Login;
 
+// / / / / / FORM STYLES / / / / / //
+
 const LoginDiv = styled.div`
+  padding-top: 4.3%;
+  height: 90vh;
   display: flex;
-  justify-content: center;
-  margin: 30px 3%;
+  /* justify-content: center; */
+  /* margin: 30px 3%; */
+  background: #333;
+  /* z-index: 0; */
+
+  .text{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+  }
+
+  input{
+    border-radius: 25px;
+    border: 1px solid black;
+    }
 `;
 
 const LoginForm = styled.form`
@@ -144,25 +172,27 @@ const LoginForm = styled.form`
   align-items: center;
   text-align: center;
   border: 1px solid black;
-  border-radius: 25px;
+  /* border-radius: 25px; */
+  margin-top: 6%;
+  background: #FFF;
+  /* z-index: 1; */
 
   input {
     border-radius: 25px;
     border: 1px solid black;
   }
 
-  button {
-    border-radius: 25px;
-    border: 1px solid black;
-    padding: 10px;
-    box-shadow: 2px 2px 2px rgba(33, 33, 33, 0.5);
-    transition: 0.3s;
-    margin-top: 10px;
+  button{
+        &:disabled{
+            border: 1px solid red;
+            color: red;
+            cursor: not-allowed;
 
-    &:hover {
-      box-shadow: none;
+            &:hover{
+                box-shadow: none;
+            }
+        }
     }
-  }
 `;
 
 const Error = styled.span`

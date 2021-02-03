@@ -8,7 +8,7 @@ const NavBarStyled = styled.div`
     position: fixed;
     top: 0px;
     width: 100%;
-    background: transparent;
+    /* background: rgba(0,0,0,0.83); */
     .navList {
         list-style: none;
         display: flex;
