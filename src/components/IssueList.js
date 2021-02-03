@@ -20,7 +20,7 @@ function IssuePage() {
   return (
     <IssueList>
       {issuesList.map((issue) => {
-        return <IssueCard key={issue.user_id} issue={issue} />;
+        return <IssueCard key={issue.id} issue={issue} />;
       })}
     </IssueList>
   );
