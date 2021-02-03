@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import IssueCard from './IssueCard';
 import axiosWithAuth from '../utils/axiosWithAuth';
@@ -12,7 +11,7 @@ function IssuePage() {
       .get('issues')
       .then((res) => {
         console.log('GET ISSUES', res);
-        // setIssuesList(res.data);
+        setIssuesList(res.data);
       })
       .catch((err) => {
         console.log(err.message);
@@ -20,10 +19,9 @@ function IssuePage() {
   }, []);
   return (
     <IssueList>
-      {/* {issuesList.map((issue) => {
+      {issuesList.map((issue) => {
         return <IssueCard key={issue.user_id} issue={issue} />;
-      })} */}
-      <IssueCard />
+      })}
     </IssueList>
   );
 }
