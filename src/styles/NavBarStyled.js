@@ -31,6 +31,7 @@ const NavBarStyled = styled.div`
         display: flex;
         color: white;
         flex: 1;
+        cursor: default;
     }
     .i {
       font-size: 30px;

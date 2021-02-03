@@ -24,7 +24,7 @@ function App() {
 
           {/* <a href="/issues">Issue List</a> */}
           <Route path="/issues" component={IssueList} />
-          <Route path='/developers'>
+          <Route path='/about'>
             <Developers />
           </Route>
           <Route path="/login" component={Login} />

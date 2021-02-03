@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import NavBar from './NavBar';
+import About from './About';
 
 const gitInfo = [
     {gitID: 'benaiah-varner'},
@@ -34,6 +35,9 @@ export default function Developers(){
     return(
 <>
     <NavBar />
+
+<DevDiv>
+<About />
     <Header>Meet the Team!</Header>
         <DevContainer>
             {
@@ -43,13 +47,16 @@ export default function Developers(){
                         <h1>{dev.name}</h1>
                         <DevText>
                             <img src={dev.image} alt={dev.name}></img>
-                            <p><h3>Bio:</h3><br />{dev.bio}</p>
+                            {
+                                dev.bio === null ? '' : <p><h3>Bio:</h3><br />{dev.bio}</p>
+                            }
                         </DevText>
                     </DevCard>
                     )
                 })
             }
         </DevContainer>
+</DevDiv>
 </>
     )
 }
@@ -59,17 +66,26 @@ const Header = styled.h1`
     text-align: center;
 `
 
+const DevDiv = styled.div`
+    padding-top: 4.3%;
+    background: #333;
+
+`
+
 const DevContainer = styled.section`
-    /* height: 100vh; */
+    /* padding-top: 4.3%;
+    background: #333; */
 `
 
 const DevCard = styled.div`
-    width: 45%;
-    display:flex;
+    min-width: 45%;
+    max-width: 50%;
+    display: flex;
     flex-direction: column;
     border: 1px solid black;
     border-radius: 25px;
     margin: 0 auto 3% auto;
+    background: #FFF;
 
 
     h1{

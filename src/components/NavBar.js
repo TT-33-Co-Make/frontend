@@ -38,11 +38,10 @@ const NavBar = () => {
             <nav className='navBar'>
                 <ul className='navList'>
                 <li>  <a className="navHome" href='/'>Home</a></li>
-                  <li> <a className="navLogin" href='/login'>Login</a></li> 
-                   <li> <a className="navSignUp" href='/signup'>Sign Up</a></li>
-                   <li> <a className="navSignUp" href='/about'>About</a></li>
-                   <li> <a className="navSignUp" href='/developers'>Developers</a></li>
-                 <li>  <a className="navSignUp" href='/issues'>Issues</a></li>
+                <li> <a className="navLogin" href='/login'>Login</a></li> 
+                <li> <a className="navSignUp" href='/signup'>Sign Up</a></li>
+                <li> <a className="navSignUp" href='/about'>About</a></li>
+                <li>  <a className="navSignUp" href='/issues'>Issues</a></li>
 
                 </ul>
             </nav>
