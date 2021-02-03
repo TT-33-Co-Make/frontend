@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import NavBar from './NavBar';
 
 const gitInfo = [
     {gitID: 'benaiah-varner'},
@@ -32,6 +33,7 @@ export default function Developers(){
 
     return(
 <>
+    <NavBar />
     <Header>Meet the Team!</Header>
         <DevContainer>
             {
