@@ -19,7 +19,7 @@ const StyledAbout = styled.div`
     width: 100%;
     height: 80vh;
     display: flex;
-
+    margin: 10px 0px;
 `
 
 const Image = styled.div`
