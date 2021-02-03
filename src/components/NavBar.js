@@ -2,11 +2,13 @@ import React from 'react';
 import NavBarStyled from '../styles/NavBarStyled'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faDove } from '@fortawesome/free-solid-svg-icons'
+import { useHistory } from 'react-router-dom';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const onScroll = (e) => {
 
     const navbar = e.target.name
-    console.log(navbar)
+    console.log('called ',navbar)
 
     if(this.oldScroll > this.scrollY) {
         if(window.pageYOffset === 0)
@@ -27,7 +29,9 @@ const onScroll = (e) => {
 const NavBar = () => {
 
     return(
-        <NavBarStyled onScroll={onScroll}>
+        <div onScroll={onScroll}>
+        <NavBarStyled>
+            
             <div className='logo'>
              <FontAwesomeIcon icon={faDove} className='i'/><h1>Co-Make</h1>
             </div>
@@ -42,6 +46,7 @@ const NavBar = () => {
                 </ul>
             </nav>
         </NavBarStyled>
+        </div>
     )
 }
 

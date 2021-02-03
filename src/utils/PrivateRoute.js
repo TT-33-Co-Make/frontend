@@ -6,7 +6,7 @@ export default function PrivateRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={() => {
-        if (localStorage.getItem('token')) {
+        if (sessionStorage.getItem('token')) {
           return <Component />;
         } else {
           return <Redirect to="/" />;

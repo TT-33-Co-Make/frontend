@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const NavBarStyled = styled.div` 
-
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,7 +17,7 @@ const NavBarStyled = styled.div`
     .navList a {
         transition: 0.1s ease-in-out;
         text-decoration: none;
-        color: black;
+        color: white;
         padding: 0 50px;
         font-size: 1rem;
     }
@@ -26,14 +26,19 @@ const NavBarStyled = styled.div`
     padding: 13px 50px;
     }
     .logo {
+        padding-left: 30px;
         align-items: center;
         display: flex;
-    
+        color: white;
         flex: 1;
     }
     .i {
       font-size: 30px;
       color: #28A745;
+    }
+    .top {
+        background: #333333;
+        opacity: 0.3;
     }
 `;
 
