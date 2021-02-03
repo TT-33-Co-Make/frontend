@@ -1,168 +1,170 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import * as yup from 'yup';
 import LoginSchema from '../validation/LoginSchema';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 
-
 const initLoginValues = {
-    username: '',
-    password: ''
+  username: '',
+  password: ''
 };
 
 const initLoginErrors = {
-    username: '',
-    password: ''
-}
+  username: '',
+  password: ''
+};
 
 const initDisabled = true;
 
 const Login = () => {
+  // / / / / / Slice of State for User's Signup Data / / / / / //
 
-    // / / / / / Slice of State for User's Signup Data / / / / / //
+  const [loginData, setLoginData] = useState(initLoginValues);
 
-        const [loginData, setLoginData] = useState(initLoginValues);
+  const { push } = useHistory();
+  //const [authorized, setAuthorized] = useState(AuthContext);
 
-        const { push } = useHistory(); 
-        //const [authorized, setAuthorized] = useState(AuthContext);
+  // / / / / / Slice of State for Form Errors / / / / / //
 
+  const [errors, setErrors] = useState(initLoginErrors);
 
-    // / / / / / Slice of State for Form Errors / / / / / //
+  // / / / / / Slice of State for Button Enablement / / / / / //
 
-        const [errors, setErrors] = useState(initLoginErrors);
+  const [disabled, setDisabled] = useState(initDisabled);
 
-    // / / / / / Slice of State for Button Enablement / / / / / //
+  // / / / / / Change Handler for Controlled Inputs & Validation / / / / / //
 
-        const [disabled, setDisabled] = useState(initDisabled);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-    // / / / / / Change Handler for Controlled Inputs & Validation / / / / / //
-
-    const handleChange = event => {
-        const { name, value } = event.target;
-
-        yup
-        .reach(LoginSchema, name)
-        .validate(value)
-        .then(() => {
-            setErrors({
-                ...errors, [name]: ''
-            });
-        })
-        .catch(err => {
-            setErrors({
-                ...errors, [name]: err.errors[0]
-            });
+    yup
+      .reach(LoginSchema, name)
+      .validate(value)
+      .then(() => {
+        setErrors({
+          ...errors,
+          [name]: ''
         });
+      })
+      .catch((err) => {
+        setErrors({
+          ...errors,
+          [name]: err.errors[0]
+        });
+      });
 
-        setLoginData({...loginData, [name]: value});
-    };
+    setLoginData({ ...loginData, [name]: value });
+  };
 
-    
+  // / / / / / Button Disabled status handler / / / / / //
 
-    // / / / / / Button Disabled status handler / / / / / //
+  useEffect(() => {
+    LoginSchema.isValid(loginData).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [loginData]);
 
+  const login = (user) => {
+    axios
+      .post('https://comake-backend-lambda.herokuapp.com/api/login', user)
+      .then((res) => {
+        console.log(res);
+        sessionStorage.setItem('token', res.data.token);
+        push('/issues');
+      })
+      .catch((err) => {
+        console.log(err, 'ERROR');
+      });
+  };
 
-    
+  // / / / / / Submit Handler for Login Functionality / / / / / //
 
-    useEffect(() => {
-        LoginSchema.isValid(loginData).then(valid => {
-            setDisabled(!valid);
-        })
-    }, [loginData]);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const user = { ...loginData };
+    console.log(loginData);
+    login(user);
 
-    // / / / / / POST Request for Login / / / / / //
+    setLoginData(initLoginValues);
+  };
 
-    const login = (user) => {
-        axios.post('https://comake-backend-lambda.herokuapp.com/api/login', user)
-        .then(res => {
-            console.log(res.data.token);
-            sessionStorage.setItem('token', res.data.token)
-            push('/issues')
-        })
-        .catch(err => {
-            console.log(err,'ERROR');
-        })
-    }
+  // / / / / / Above currently returning 401 error - leaving for later use / / / / / //
 
-    // / / / / / Submit Handler for Login Functionality / / / / / //
-
-    const handleSubmit = event => {
-        event.preventDefault();
-        const user = {...loginData};
-        console.log(loginData)
-        login(user);
-
-        setLoginData(initLoginValues);
-    };
-
-    // / / / / / Above currently returning 401 error - leaving for later use / / / / / //
-
-
-    return(
+  return (
     <LoginDiv>
-        <LoginForm onSubmit={handleSubmit}>
-            <label>User Name / Email: <br />
-                <Error>{errors.username}</Error> <br />
-                <input
-                type='text'
-                name='username'
-                value={loginData.username}
-                onChange={handleChange} />
-            </label>
-
-            <label>Password: <br />
-                <Error>{errors.password}</Error> <br />
-                <input
-                type='password'
-                name='password'
-                value={loginData.password}
-                onChange={handleChange} />
-            </label>
-            <button>Sign Me Up!</button>
-        </LoginForm>
+              
+      <LoginForm onSubmit={handleSubmit}>
+        <label>
+          User Name / Email: <br />
+          <Error>{errors.username}</Error> <br />
+                          
+          <input
+            type="text"
+            name="username"
+            value={loginData.username}
+            onChange={handleChange}
+          />
+                      
+        </label>
+                    
+        <label>
+          Password: <br />
+          <Error>{errors.password}</Error> <br />
+                          
+          <input
+            type="password"
+            name="password"
+            value={loginData.password}
+            onChange={handleChange}
+          />
+                      
+        </label>
+        <button>Sign Me Up!</button>
+                
+      </LoginForm>
     </LoginDiv>
-    )
-}
+  );
+};
 
 export default Login;
 
 const LoginDiv = styled.div`
-    display: flex;
-    justify-content: center;
-    margin: 30px 3%;
-`
+  display: flex;
+  justify-content: center;
+  margin: 30px 3%;
+`;
 
 const LoginForm = styled.form`
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: 1px solid black;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 25px;
+
+  input {
     border-radius: 25px;
+    border: 1px solid black;
+  }
 
-    input{
-        border-radius: 25px;
-        border: 1px solid black;
+  button {
+    border-radius: 25px;
+    border: 1px solid black;
+    padding: 10px;
+    box-shadow: 2px 2px 2px rgba(33, 33, 33, 0.5);
+    transition: 0.3s;
+    margin-top: 10px;
+
+    &:hover {
+      box-shadow: none;
     }
-
-    button{
-        border-radius: 25px;
-        border: 1px solid black;
-        padding: 10px;
-        box-shadow: 2px 2px 2px rgba(33, 33, 33, 0.5);
-        transition: .3s;
-        margin-top: 10px;
-
-        &:hover{
-            box-shadow: none;
-        }
-    }
-`
+  }
+`;
 
 const Error = styled.span`
-    color: red;
-`
+  color: red;
+`;
