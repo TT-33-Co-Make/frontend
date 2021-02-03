@@ -3,6 +3,8 @@ import axios from 'axios';
 import styled from 'styled-components';
 import NavBar from './NavBar';
 import About from './About';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const gitInfo = [
     {gitID: 'benaiah-varner'},
@@ -26,6 +28,8 @@ export default function Developers(){
                 temp[i].image = data.avatar_url;
                 temp[i].url = data.html_url;
                 temp[i].bio = data.bio;
+                temp[i].name = data.name;
+                temp[i].login = data.login;
             }
             setDevelopers(temp);
         }
@@ -44,13 +48,14 @@ export default function Developers(){
                 developers.map(dev => {
                     return (
                     <DevCard>
-                        <h1>{dev.name}</h1>
-                        <DevText>
+                        <h1>{dev.name === null ? dev.login : dev.name}</h1>
+                        <DevInfo>
                             <img src={dev.image} alt={dev.name}></img>
-                            {
-                                dev.bio === null ? '' : <p><h3>Bio:</h3><br />{dev.bio}</p>
-                            }
-                        </DevText>
+                            <DevText>
+                                {dev.bio === null ? '' : <><h3>Bio:</h3><p>{dev.bio}</p></>}
+                                <a href={dev.url}><FontAwesomeIcon icon={faGithub} className='i'/></a>
+                            </DevText>
+                        </DevInfo>
                     </DevCard>
                     )
                 })
@@ -64,6 +69,8 @@ export default function Developers(){
 const Header = styled.h1`
     width: 100%;
     text-align: center;
+    color: white;
+    margin-top: 2%;
 `
 
 const DevDiv = styled.div`
@@ -78,12 +85,10 @@ const DevContainer = styled.section`
 `
 
 const DevCard = styled.div`
-    min-width: 45%;
-    max-width: 50%;
+    width: 45%;
     display: flex;
     flex-direction: column;
     border: 1px solid black;
-    border-radius: 25px;
     margin: 0 auto 3% auto;
     background: #FFF;
 
@@ -92,19 +97,45 @@ const DevCard = styled.div`
         width: 100%;
         text-align: center;
     }
+
+    &:hover{
+        img{
+            box-shadow: 2px 2px 2px 2px rgba(33, 33, 33, 0.5);
+        }
+    }
 `
 
-const DevText = styled.div`
+const DevInfo = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    padding-bottom: 25px;
+    padding: 25px 0 25px 0;
 
     img{
         width: 50%;
         margin-right: 25px;
         margin-left: 15px;
         border-radius: 100%;
+        transition: .3s;
+    }
+`
+
+const DevText = styled.div`
+    text-align: center;
+    width: 50%;
+
+    p{
+        text-align: center;
+    }
+
+    a{
+        font-size: 25px;
+        color: black;
+        transition: .2s;
+
+        &:hover{
+            color: #28A745;
+        }
     }
 `
 
