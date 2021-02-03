@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import IssueCard from './IssueCard';
 
 function Issue() {
@@ -10,6 +10,7 @@ function Issue() {
   });
 
   const { id } = useParams();
+  // const { push } = useHistory();
 
   useEffect(() => {
     axiosWithAuth
@@ -24,9 +25,23 @@ function Issue() {
       });
   }, []);
 
+  // Cant test yet
+  // const deleteIssue = () => {
+  //   axiosWithAuth
+  //     .delete(`issues/${id}`)
+  //     .then(res=>{
+  //       console.log('DELETE res:', res)
+  //       push('issues');
+  //     })
+  //     .catch(err=>{
+  //       console.log(err);
+  //     })
+  // }
+
   return (
     <div>
       <IssueCard issue={issue} />
+      {/* <button onClick={deleteIssue}></button> */}
     </div>
   );
 }

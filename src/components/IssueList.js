@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import IssueCard from './IssueCard';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import NavBar from './NavBar';
 
 function IssuePage() {
   const [issuesList, setIssuesList] = useState([]);
@@ -18,14 +19,19 @@ function IssuePage() {
       });
   }, []);
   return (
-    <IssueList>
-      <h2>List of Issues</h2>
-      <hr id="titleHr" />
-      {issuesList.map((issue) => {
-        return <IssueCard key={issue.id} issue={issue} />;
-      })}
-      {/* <IssueCard /> */}
-    </IssueList>
+    <div>
+    <div className='navDiv'>
+      <NavBar />
+      </div>
+      <IssueList className='issueList'>
+        <h2>List of Issues</h2>
+        <hr id="titleHr" />
+        {issuesList.map((issue) => {
+          return <IssueCard key={issue.id} issue={issue} />;
+        })}
+        {/* <IssueCard /> */}
+      </IssueList>
+    </div>
   );
 }
 

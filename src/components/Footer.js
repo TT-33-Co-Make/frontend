@@ -36,10 +36,11 @@ const Footer = () => {
         <div className="social">
             <a href="#"><FontAwesomeIcon icon={faFacebook}/></a>
             <a href="#"><FontAwesomeIcon icon={faTwitter}/></a>
-            <a href="#"><FontAwesomeIcon icon={faTwitter}/></a>
+            <a href="#"><FontAwesomeIcon icon={faInstagram}/></a>
             <a href="#"><FontAwesomeIcon icon={faGithub}/></a>
+            <a href="#"><FontAwesomeIcon icon={faLinkedin}/></a>
         </div>
-        <p>Copyrught &copy; 2020 - Co-Make</p>
+        <p>Copyright &copy; 2020 - Co-Make</p>
     </footer>
 </FooterStyled>
   );
