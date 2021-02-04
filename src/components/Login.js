@@ -8,6 +8,7 @@ import { AuthContext } from '../contexts/AuthContext';
 import NavBar from './NavBar';
 import StyledButton from '../styles/StyledButton';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import Footer from './Footer';
 
 const initLoginValues = {
   username: '',
@@ -135,6 +136,7 @@ const Login = () => {
                   
         </LoginForm>
       </LoginDiv>
+      <Footer />
     </>
   );
 };
