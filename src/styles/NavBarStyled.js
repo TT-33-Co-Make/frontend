@@ -7,7 +7,7 @@ const NavBarStyled = styled.div`
     align-items: center;
     /* position: fixed; */
     width: 100%;
-    /* background: rgba(0,0,0,0.83); */
+    background: #333333;
     .navList {
         list-style: none;
         display: flex;

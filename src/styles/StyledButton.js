@@ -6,7 +6,7 @@ const StyledButton = styled.button`
     display: inline-block;
     padding: 15px 35px;
     color: #28a745;
-    background-color: #fff;
+    background-color: transparent;
     border: 1px solid #28a745;
     border-radius: 5px;
     box-shadow: inset 0 0 0 0 #28a745;

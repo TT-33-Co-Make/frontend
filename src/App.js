@@ -36,7 +36,7 @@ const onScroll = e => {
           <Route path="/" component={Home} />
 
         </Switch>
-        <Footer/>
+        {/* <Footer/> */}
       </AuthContext.Provider>
     </div>
   );
