@@ -7,7 +7,7 @@ import NavBar from './NavBar';
 function IssuePage() {
   const [issuesList, setIssuesList] = useState([]);
 
-  useEffect(() => {
+  const getIssues = () => {
     axiosWithAuth()
       .get('issues')
       .then((res) => {
@@ -17,17 +17,24 @@ function IssuePage() {
       .catch((err) => {
         console.log(err.message);
       });
+  };
+
+  useEffect(() => {
+    getIssues();
   }, []);
+
   return (
     <div>
-    <div className='navDiv'>
-      <NavBar />
+      <div className="navDiv">
+        <NavBar />
       </div>
-      <IssueList className='issueList'>
+      <IssueList className="issueList">
         <h2>List of Issues</h2>
         <hr id="titleHr" />
         {issuesList.map((issue) => {
-          return <IssueCard key={issue.id} issue={issue} />;
+          return (
+            <IssueCard key={issue.id} issue={issue} getIssues={getIssues} />
+          );
         })}
         {/* <IssueCard /> */}
       </IssueList>
