@@ -61,7 +61,7 @@ export default function Developers(){
             // scrub: true,
             toggleActions: "play none none reset"
         },
-        x: 850,
+        x: -850,
         opacity: 0,
         duration: 2
     });
@@ -85,7 +85,7 @@ export default function Developers(){
             // scrub: true,
             toggleActions: "play none none reset"
         },
-        x: 850,
+        x: -850,
         opacity: 0,
         duration: 2
     });
