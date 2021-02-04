@@ -1,42 +1,59 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import IssueCard from './IssueCard';
+import axiosWithAuth from '../utils/axiosWithAuth';
+import NavBar from './NavBar';
 
 function IssuePage() {
   const [issuesList, setIssuesList] = useState([]);
 
   useEffect(() => {
-    axios
-      .get('https://co-make-tt-33.herokuapp.com/api/issues')
+    axiosWithAuth()
+      .get('issues')
       .then((res) => {
         console.log('GET ISSUES', res);
-        // setIssuesList(res.data);
+        setIssuesList(res.data);
       })
       .catch((err) => {
         console.log(err.message);
       });
   }, []);
   return (
-    <IssueList>
-      {/* {issuesList.map((issue) => {
-        return <IssueCard key={issue.user_id} issue={issue} />;
-      })} */}
-      <IssueCard />
-    </IssueList>
+    <div>
+    <div className='navDiv'>
+      <NavBar />
+      </div>
+      <IssueList className='issueList'>
+        <h2>List of Issues</h2>
+        <hr id="titleHr" />
+        {issuesList.map((issue) => {
+          return <IssueCard key={issue.id} issue={issue} />;
+        })}
+        {/* <IssueCard /> */}
+      </IssueList>
+    </div>
   );
 }
 
 export default IssuePage;
 
 const IssueList = styled.div`
-  border: 2px solid black;
-  width: 80%;
-  margin: 2% auto;
-  padding: 2%;
-  box-shadow: 
-      /* top */ rgba(0, 0, 0, 0.1) 0px -6px 10px,
-    /* right */ rgba(0, 0, 0, 0.1) 6px 0px 10px,
-    /* bottom */ rgba(0, 0, 0, 0.1) 0px 6px 10px,
-    /* left */ rgba(0, 0, 0, 0.1) -6px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4%;
+  background-color: #333333;
+
+  h2 {
+    color: whitesmoke;
+    font-size: 2rem;
+  }
+
+  #titleHr {
+    width: 92%;
+    margin: 2% auto;
+    background-color: #28a745;
+    height: 6px;
+    border-color: #28a745;
+  }
 `;

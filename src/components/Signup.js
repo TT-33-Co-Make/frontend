@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import NavBar from './NavBar';
+import StyledButton from '../styles/StyledButton';
 
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -102,7 +104,15 @@ export default function Signup(){
 
 
     return(
+    <>
+    <NavBar />
+
     <SignUpDiv>
+
+        <div className='text'>
+            <h2>Sign up here!</h2>
+        </div>
+
         <SignupForm onSubmit={handleSubmit}>
             
             <label>Email: <br />
@@ -131,19 +141,30 @@ export default function Signup(){
                 value={signupData.password}
                 onChange={handleChange} />
             </label>
-            <button >Sign Me Up!</button>
+            <StyledButton disabled={disabled}>Sign Me Up!</StyledButton>
         </SignupForm>
     </SignUpDiv>
+    </>
     )
 }
 
-// / / / / / Basic Styles for Signup Form Alone / / / / / //
-// / / / / / Using PX Until Confirmed Exact Usage of Responsive Units / / / / / //
+// / / / / / FORM STYLES / / / / / //
 
 const SignUpDiv = styled.div`
+    padding-top: 4.3%;
+    height: 90vh;
     display: flex;
     justify-content: center;
-    margin: 30px 3%;
+    /* margin: 30px 3%; */
+    background: #333;
+
+    .text{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+  }
 `
 
 const SignupForm = styled.form`
@@ -154,7 +175,8 @@ const SignupForm = styled.form`
     align-items: center;
     text-align: center;
     border: 1px solid black;
-    border-radius: 25px;
+    margin-top: 6%;
+    background: #FFF;
 
     input{
         border-radius: 25px;
@@ -162,15 +184,14 @@ const SignupForm = styled.form`
     }
 
     button{
-        border-radius: 25px;
-        border: 1px solid black;
-        padding: 10px;
-        box-shadow: 2px 2px 2px rgba(33, 33, 33, 0.5);
-        transition: .3s;
-        margin-top: 10px;
+        &:disabled{
+            border: 1px solid red;
+            color: red;
+            cursor: not-allowed;
 
-        &:hover{
-            box-shadow: none;
+            &:hover{
+                box-shadow: none;
+            }
         }
     }
 `

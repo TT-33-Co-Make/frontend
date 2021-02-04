@@ -17,14 +17,18 @@ import Developers from './components/Developers';
 
 function App() {
 
+const onScroll = e => {
+  console.log(e);
+}
+
   return (
-    <div className="App">
+    <div className="App" onScroll={onScroll}>
       <AuthContext.Provider value={{}}>
         <Switch>
 
           {/* <a href="/issues">Issue List</a> */}
           <Route path="/issues" component={IssueList} />
-          <Route path='/developers'>
+          <Route path='/about'>
             <Developers />
           </Route>
           <Route path="/login" component={Login} />
