@@ -14,6 +14,15 @@ const Home = () => {
 const [current, setCurrent] = useState(0);
 const length = issues.length
 
+    const size = {
+        height: 5,
+        width: 5,
+        radius: 10
+    }
+    const draw = (size) => {
+
+    }
+
   const nextIssue = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
   };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import NavBar from './NavBar';
 import StyledButton from '../styles/StyledButton';
+import Footer from './Footer';
 
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -155,6 +156,7 @@ export default function Signup() {
                   
         </SignupForm>
       </SignUpDiv>
+      <Footer />
     </>
   );
 }

@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import NavBar from './NavBar';
 import About from './About';
+import Footer from './Footer';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
@@ -49,7 +50,7 @@ export default function Developers(){
                     return (
                     <DevCard>
                         <h1>{dev.name === null ? dev.login : dev.name}</h1>
-                        <DevInfo>
+                        <DevInfo style={{flexDirection: dev.bio === null ? 'column' : 'row'}}>
                             <img src={dev.image} alt={dev.name}></img>
                             <DevText>
                                 {dev.bio === null ? '' : <><h3>Bio:</h3><p>{dev.bio}</p></>}
@@ -62,6 +63,7 @@ export default function Developers(){
             }
         </DevContainer>
 </DevDiv>
+<Footer />
 </>
     )
 }
@@ -80,8 +82,7 @@ const DevDiv = styled.div`
 `
 
 const DevContainer = styled.section`
-    /* padding-top: 4.3%;
-    background: #333; */
+    
 `
 
 const DevCard = styled.div`
