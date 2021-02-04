@@ -13,8 +13,8 @@ function Issue() {
 
   const [issue, setIssue] = useState(null);
 
-  let isEditing = false;
-  console.log(isEditing);
+  // let isEditing = false;
+  // console.log(isEditing);
 
   const params = useParams();
   const { push } = useHistory();
@@ -49,9 +49,9 @@ function Issue() {
   //     })
   // }
 
-  if (!issue) {
-    return <div>Loading Issue information...</div>;
-  }
+  // if (!issue) {
+  //   return <div>Loading Issue information...</div>;
+  // }
 
   return (
     <div>
