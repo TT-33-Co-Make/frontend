@@ -36,7 +36,7 @@ function Issue() {
   //     .delete(`issues/${id}`)
   //     .then(res=>{
   //       console.log('DELETE res:', res)
-  //       push('issues');
+  //       push('/issues');
   //     })
   //     .catch(err=>{
   //       console.log(err);
