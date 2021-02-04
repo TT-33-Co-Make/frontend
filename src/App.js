@@ -14,6 +14,7 @@ import Home from './components/Home';
 // import NavBar from './components/NavBar';
 import Login from './components/Login';
 import IssueList from './components/IssueList';
+import EditForm from './components/EditForm';
 import Developers from './components/Developers';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           {/* <a href="/issues">Issue List</a> */}
           <Route path="/issues" component={IssueList} />
           <Route path="/issues/:id" component={Issue} />
+          <Route path="/issues/:id/edit" component={EditForm} />
           <Route path="/about">
             <Developers />
           </Route>

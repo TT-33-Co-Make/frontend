@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import IssueCard from './IssueCard';
 // import EditForm from './EditForm';
 
@@ -18,7 +18,7 @@ function Issue() {
 
   const params = useParams();
   // const params = useParams(); use this with code bellow if needed
-  // const { push } = useHistory();
+  const { push } = useHistory();
 
   function fetchIssue(id) {
     axiosWithAuth
@@ -60,7 +60,8 @@ function Issue() {
       <IssueCard issue={issue} />
       {/* NOTE TO SELF: don't forget to add Benaiah's button class to these buttons */}
       {/* <button onClick={deleteIssue}>Delete</button> */}
-      <button onClick={(isEditing = !isEditing)}>Edit</button>
+      {/* <button onClick={(isEditing = !isEditing)}>Edit</button> */}
+      <button onClick={() => push(`issues/${params.id}/edit`)}>Edit</button>
     </div>
   );
 }

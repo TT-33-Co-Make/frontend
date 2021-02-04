@@ -1,10 +1,11 @@
-import React, { useHistory, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 function EditForm({ issue, getIssues }) {
   const [formValues, setFormValues] = useState(issue);
-
+  const { id } = useParams();
   const { push } = useHistory();
 
   console.log('EDIT FORM INCOMING STATE', issue); //test to see what state is coming into the form
@@ -31,6 +32,18 @@ function EditForm({ issue, getIssues }) {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`issues/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        // setFormValues(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <StyledForm onSubmit={handleSubmit}>
