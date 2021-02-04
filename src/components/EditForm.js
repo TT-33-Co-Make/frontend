@@ -25,7 +25,7 @@ function EditForm({ issue, getIssues }) {
       .then((res) => {
         console.log(res);
 
-        push(`/`);
+        push(`/${formValues.id}`);
       })
       .catch((err) => {
         console.log(err);

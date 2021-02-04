@@ -4,7 +4,7 @@ import React, { useHistory } from 'react';
 
 import styled from 'styled-components';
 
-function IssueCard({ issue, getIssues }) {
+function IssueCard({ issue }) {
   // const { push } = useHistory();
 
   const handleClick = (issue) => {
