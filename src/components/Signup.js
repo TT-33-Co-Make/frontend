@@ -68,7 +68,7 @@ export default function Signup(){
 
     const handleSubmit = event => {
         event.preventDefault();
-        axios.post('https://co-make-tt-33.herokuapp.com/api/register', signupData)
+        axios.post('https://comake-backend-lambda.herokuapp.com/api/register', signupData)
         .then(res => {
             console.log(res);
             push('/login');
