@@ -1,27 +1,14 @@
 import React from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 function IssueCard({ issue }) {
-  // const { push } = useHistory();
-
-  const handleClick = (issue) => {
-    axiosWithAuth()
-      .get(`issues/${issue.id}`)
-      .then((res) => {
-        console.log(res.data);
-        // push(`issues/${res.data.id}`);
-        window.location = `http://localhost:3000/issues/${res.data.id}`; //fix this so that it routes me to Issue.js
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const { push } = useHistory();
 
   return (
-    <StyledIssueCard onClick={() => handleClick(issue)}>
+    <StyledIssueCard onClick={() => push(`/issues/${issue.id}`)}>
       {/* <IssueCardGlobal /> */}
       <h3>{issue.title}</h3>
       <hr />
