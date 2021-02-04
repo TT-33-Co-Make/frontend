@@ -28,6 +28,12 @@ h2 {
   font-size: 3.5rem;
 }
 
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+}
+
 .App {
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
