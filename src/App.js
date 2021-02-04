@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Route, Switch, Redirect, } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import Footer from './components/Footer';
+import Issue from './components/Issue';
+// import Footer from './components/Footer';
 
 // Contexts
 import { AuthContext } from './contexts/AuthContext';
@@ -16,25 +17,23 @@ import IssueList from './components/IssueList';
 import Developers from './components/Developers';
 
 function App() {
-
-const onScroll = e => {
-  console.log(e);
-}
+  const onScroll = (e) => {
+    console.log(e);
+  };
 
   return (
     <div className="App" onScroll={onScroll}>
       <AuthContext.Provider value={{}}>
         <Switch>
-
           {/* <a href="/issues">Issue List</a> */}
           <Route path="/issues" component={IssueList} />
-          <Route path='/about'>
+          <Route path="/issues/:id" component={Issue} />
+          <Route path="/about">
             <Developers />
           </Route>
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/" component={Home} />
-
         </Switch>
         {/* <Footer/> */}
       </AuthContext.Provider>

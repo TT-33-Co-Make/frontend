@@ -9,17 +9,21 @@ function Issue() {
     id: '',
     title: '',
     description: ''
-  }); //maybe this should be initialized as null(see movie assignment)
+  });
 
   let isEditing = false;
 
-  const { id } = useParams();
+  const params = useParams();
   // const params = useParams(); use this with code bellow if needed
   // const { push } = useHistory();
 
   useEffect(() => {
+    fetchIssue(params.id);
+  }, []);
+
+  function fetchIssue(id) {
     axiosWithAuth
-      .get(`issues/${id}`) //maybe params.id
+      .get(`issues/${id}`)
       .then((res) => {
         console.log('RETURNED ISSUE OBJECT', res);
         setIssue(res.data);
@@ -28,12 +32,12 @@ function Issue() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }
 
   // Cant test yet
   // const deleteIssue = () => {
   //   axiosWithAuth
-  //     .delete(`issues/${id}`)
+  //     .delete(`issues/${params.id}`)
   //     .then(res=>{
   //       console.log('DELETE res:', res)
   //       push('/issues');
@@ -45,9 +49,8 @@ function Issue() {
 
   return (
     <div>
-      {isEditing ? <EditForm /> : <IssueCard issue={issue} />}
-
-      {/* set up conditional rendering: if editing = true -> render IssueCard, if false -> render Editform */}
+      {/* {isEditing ? <EditForm /> : <IssueCard issue={issue} />} */}
+      <IssueCard issue={issue} />
       {/* NOTE TO SELF: don't forget to add Benaiah's button class to these buttons */}
       {/* <button onClick={deleteIssue}>Delete</button> */}
       <button onClick={(isEditing = !isEditing)}>Edit</button>
