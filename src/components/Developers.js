@@ -48,7 +48,7 @@ export default function Developers(){
             {
                 developers.map(dev => {
                     return (
-                    <DevCard>
+                    <DevCard class='devcard'>
                         <h1>{dev.name === null ? dev.login : dev.name}</h1>
                         <DevInfo style={{flexDirection: dev.bio === null ? 'column' : 'row'}}>
                             <img src={dev.image} alt={dev.name}></img>
