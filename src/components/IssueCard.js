@@ -1,5 +1,4 @@
 import React from 'react';
-import axiosWithAuth from '../utils/axiosWithAuth';
 import { useHistory } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -9,7 +8,6 @@ function IssueCard({ issue }) {
 
   return (
     <StyledIssueCard onClick={() => push(`/issues/${issue.id}`)}>
-      {/* <IssueCardGlobal /> */}
       <h3>{issue.title}</h3>
       <hr />
       <p>{issue.description}</p>
@@ -18,10 +16,6 @@ function IssueCard({ issue }) {
 }
 
 export default IssueCard;
-
-// const IssueCardGlobal = createGlobalStyle`
-//   background-color: 28A745;
-// `;
 
 const StyledIssueCard = styled.div`
   display: flex;
