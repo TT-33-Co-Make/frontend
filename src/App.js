@@ -14,8 +14,11 @@ import NavBar from './components/NavBar';
 import Login from './components/Login';
 import IssueList from './components/IssueList';
 import Developers from './components/Developers';
+import Logout from './components/Logout';
 
 function App() {
+
+  const [loginStatus, setLoginStatus] = useState(false)
 
 const onScroll = e => {
   console.log(e);
@@ -23,7 +26,7 @@ const onScroll = e => {
 
   return (
     <div className="App" onScroll={onScroll}>
-      <AuthContext.Provider value={{}}>
+      <AuthContext.Provider value={{loginStatus, setLoginStatus}}>
         <Switch>
 
           {/* <a href="/issues">Issue List</a> */}
@@ -32,6 +35,7 @@ const onScroll = e => {
             <Developers />
           </Route>
           <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout}/>
           <Route path="/signup" component={Signup} />
           <Route path="/" component={Home} />
 
