@@ -1,35 +1,89 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBarStyled from '../styles/NavBarStyled'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faDove } from '@fortawesome/free-solid-svg-icons'
 import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import { debounce } from '../utils/helpers';
 
-const onScroll = (e) => {
 
-    const navbar = e.target.name
-    console.log('called ',navbar)
-
-    if(this.oldScroll > this.scrollY) {
-        if(window.pageYOffset === 0)
-         navbar.classList.add('top');
-          navbar.style.transform = 'translateY(0px)'
-
-     } else {
-         
-             navbar.classList.remove('top');
-             navbar.style.transform = 'translateY(-70px)'
-
-     }
-  
-     this.oldScroll = this.scrollY;
-    
+const navStyle = {
+    zIndex: '10',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    position: 'fixed',
+    width: '100%',
+    transition: 'top 0.3s'
 }
+
+// document.addEventListener('scroll', e => {
+//     const navbar = document.querySelector('#nav');
+    // console.log('called ',navbar)
+
+    
+
+//     if(window.oldScroll > window.scrollY) {
+//         if(window.pageYOffset === 0){
+//          navbar.classList.add('top');
+//           navbar.style.transform = 'translateY(0px)'
+//         }
+
+//      } else {
+         
+//              navbar.classList.remove('top');
+//              navbar.style.transform = 'translateY(-70px)'
+
+//      }
+
+//      window.oldScroll = window.scrollY;
+  
+//      console.log(window.oldScroll + '|' + window.scrollY)
+// })
 
 const NavBar = () => {
 
+    const [oldScroll, setOldScroll] = useState(0);
+    const [visible, setVisible] = useState(true);
+
+    const handleScroll = debounce(() => {
+        const scrollPos = window.pageYOffset;
+
+        setVisible((oldScroll > scrollPos || scrollPos < 10));
+
+        setOldScroll(scrollPos);
+    }, 100);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => window.removeEventListener('scroll', handleScroll);
+
+    }, [oldScroll, visible, handleScroll])
+
+    // const onScroll = (e) => {
+
+    //     const navbar = e.target.name
+    //     console.log('called ',navbar)
+    
+    //     if(this.oldScroll > this.scrollY) {
+    //         if(window.pageYOffset === 0){
+    //          navbar.classList.add('top');
+    //           navbar.style.transform = 'translateY(0px)'
+    
+    //      }} else {
+             
+    //              navbar.classList.remove('top');
+    //              navbar.style.transform = 'translateY(-70px)'
+    
+    //      }
+      
+    //      this.oldScroll = this.scrollY;
+        
+    // }
+
     return(
-        <div onScroll={onScroll}>
+        <div style={{...navStyle, top: visible ? '0' : '-70px'}}>
         <NavBarStyled>
             
             <div className='logo'>

@@ -17,8 +17,12 @@ import Developers from './components/Developers';
 
 function App() {
 
+const onScroll = e => {
+  console.log(e);
+}
+
   return (
-    <div className="App">
+    <div className="App" onScroll={onScroll}>
       <AuthContext.Provider value={{}}>
         <Switch>
 

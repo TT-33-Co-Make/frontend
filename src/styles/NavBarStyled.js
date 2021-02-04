@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 const NavBarStyled = styled.div` 
-    z-index: 10;
+    /* z-index: 10; */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    top: 0px;
+    /* position: fixed; */
     width: 100%;
     /* background: rgba(0,0,0,0.83); */
     .navList {
