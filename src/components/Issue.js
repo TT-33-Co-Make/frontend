@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useParams, useHistory } from 'react-router-dom';
 import IssueCard from './IssueCard';
+import EditForm from './EditForm';
 
 function Issue() {
   const [issue, setIssue] = useState({
+    id: '',
     title: '',
     description: ''
   }); //maybe this should be initialized as null(see movie assignment)
+
+  let isEditing = false;
 
   const { id } = useParams();
   // const params = useParams(); use this with code bellow if needed
@@ -32,7 +36,7 @@ function Issue() {
   //     .delete(`issues/${id}`)
   //     .then(res=>{
   //       console.log('DELETE res:', res)
-  //       push('issues');
+  //       push('/issues');
   //     })
   //     .catch(err=>{
   //       console.log(err);
@@ -41,11 +45,12 @@ function Issue() {
 
   return (
     <div>
-      <IssueCard issue={issue} />
+      {isEditing ? <EditForm /> : <IssueCard issue={issue} />}
+
       {/* set up conditional rendering: if editing = true -> render IssueCard, if false -> render Editform */}
       {/* NOTE TO SELF: don't forget to add Benaiah's button class to these buttons */}
       {/* <button onClick={deleteIssue}>Delete</button> */}
-      {/* <button onClick={() => push(`https://co-make-tt-33.herokuapp.com/api/issues/{params.id}/edit`)}>Edit</button> */}
+      <button onClick={(isEditing = !isEditing)}>Edit</button>
     </div>
   );
 }
