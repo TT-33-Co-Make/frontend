@@ -10,7 +10,7 @@ function Issue() {
   }); //maybe this should be initialized as null(see movie assignment)
 
   const { id } = useParams();
-  // const params = useParams();
+  // const params = useParams(); use this with code bellow if needed
   // const { push } = useHistory();
 
   useEffect(() => {
