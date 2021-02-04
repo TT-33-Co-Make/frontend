@@ -1,6 +1,6 @@
-import React, { useHistory } from 'react';
-// import axiosWithAuth from '../utils/axiosWithAuth';
-// import { createGlobalStyle } from 'styled-components';
+import React from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
+// import { useHistory } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -8,33 +8,24 @@ function IssueCard({ issue }) {
   // const { push } = useHistory();
 
   const handleClick = (issue) => {
-    // axiosWithAuth()
-    //   .get(`issues${issue.id}`)
-    //   .then((res) => {
-    //     console.log(res);
-    //     push.(`/issues.${issue.id}`)//redirect to Issue.js to show individual card
-    // })
-    //   .catch((err) => {
-    //     console.log(err);
-    // })
+    axiosWithAuth()
+      .get(`issues/${issue.id}`)
+      .then((res) => {
+        console.log(res.data);
+        // push(`issues/${res.data.id}`);
+        window.location = `http://localhost:3000/issues/${res.data.id}`; //fix this so that it routes me to Issue.js
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
-    <StyledIssueCard onClick={handleClick}>
+    <StyledIssueCard onClick={() => handleClick(issue)}>
       {/* <IssueCardGlobal /> */}
       <h3>{issue.title}</h3>
-      <p>{issue.description}</p>
-      {/* <h3>Title 1</h3>
       <hr />
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p> */}
+      <p>{issue.description}</p>
     </StyledIssueCard>
   );
 }

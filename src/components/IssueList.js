@@ -11,7 +11,7 @@ function IssuePage() {
     axiosWithAuth()
       .get('issues')
       .then((res) => {
-        console.log('GET ISSUES', res);
+        // console.log('GET ISSUES', res);
         setIssuesList(res.data);
       })
       .catch((err) => {
