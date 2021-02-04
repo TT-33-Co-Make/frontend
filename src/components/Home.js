@@ -14,6 +14,15 @@ const Home = () => {
 const [current, setCurrent] = useState(0);
 const length = issues.length
 
+    const size = {
+        height: 5,
+        width: 5,
+        radius: 10
+    }
+    const draw = (size) => {
+
+    }
+
   const nextIssue = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
   };
@@ -67,7 +76,9 @@ const length = issues.length
         </div>
         {/* Card display */}
         <div className='cardContainer'>
+            <div className='testimonial'>
             <h2>Testimonials</h2>
+            </div>
             <div className="cardDisplay">
             <FontAwesomeIcon className='cardIcon' icon={faChevronLeft} onClick={prevIssue}>Prev</FontAwesomeIcon>
             {
@@ -108,27 +119,29 @@ const length = issues.length
             <div className="imgSide">
                 
             </div>
-            <div className="formSide">
-                <h3>Contact Us With Questions Or Issues</h3>
-                <form action="">
-                    <label htmlFor="name"> Name
-                        <input type="text" name="name" id=""/>
-                    </label>
-                    <label htmlFor="">Email
-                        <input type="email"/>
-                    </label>
-                    <label htmlFor="">
-                        Message
-                        <textarea name="" id="" cols="30" rows="10">
+                <div className="formSide">
+                    <h2>Contact Us</h2>
+                    <form action="" className='callback-form'>
+                    <div class="form-control">
+                        <label for="name"></label>
+                        <input type="text" name='name' id="name" placeholder="Name"/>
 
-                        </textarea>
-                    </label>
-                </form>
-            </div>
+                    </div>
+                    <div class="form-control">
+                        <label for="email"></label>
+                        <input type="text" name='email' id="email" placeholder="Enter email"/>
+                        
+                    </div>
+                    <div class="form-control">
+                        <label for="phone"></label>
+                        <input type="text" name='phone' id="phone" placeholder="Message"/>
+                    </div>
+                    </form>
+                    <StyledButton>Submit</StyledButton>
+                </div>
         </div>
-      </HomePageStyled>
-        {/* <FooterStyled>
-        <footer className="footer">
+        {/* {FOoter} */}
+        <div className="footer">
         <div className="social">
             <a href="#"><FontAwesomeIcon icon={faFacebook}/></a>
             <a href="#"><FontAwesomeIcon icon={faTwitter}/></a>
@@ -136,8 +149,8 @@ const length = issues.length
             <a href="#"><FontAwesomeIcon icon={faGithub}/></a>
         </div>
         <p>Copyright &copy; 2020 - Co-Make</p>
-    </footer>
-        </FooterStyled> */}
+    </div>
+      </HomePageStyled>
     </>
   );
 };

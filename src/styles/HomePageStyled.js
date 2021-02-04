@@ -64,6 +64,17 @@ const HomePageStyled = styled.div`
     justify-content: center;
     align-items: center;
   }
+  .p * {
+    margin: 20px;
+  }
+  // testimonials
+  .testimonial {
+    width: 50%;
+    border-bottom: 1px solid #28A745;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 3%;
+  }
   .cardContaier {
       display: flex;
       flex-direction: column;
@@ -73,11 +84,13 @@ const HomePageStyled = styled.div`
 
   .cardDisplay {
       width: 100%;
-      height: 80vh;
+      height: 70vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-bottom: 5%
   }
+
   .cardIcon {
       color: #28A745;
       font-size: 5rem;
@@ -117,10 +130,9 @@ const HomePageStyled = styled.div`
       display: inherit;
       width: 25%;
   }
-  .active img {
-      padding-top: 10px;
-  }
+  // Gallery
   .cases {
+    margin-top: 3%;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -135,24 +147,90 @@ const HomePageStyled = styled.div`
     opacity: 0.7;
 }
   .gallery {
-      text-align: center;
+    width: 93%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+      margin-bottom: 3%;
+      border-bottom: 1px solid #28a745;
   }
   .gallery * {
       margin-bottom: 10px;
   }
-  .contactForm {
-      border: 1px solid black;
-      display: flex;
-      width: 100%;
-      height: 60vh;
+  //Contact form
+  .formSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
   }
-  .imgSide, .formSide {
-      width: 50%;
-      height: 100%;
-  }
-  .imgSide {
-    background: url('https://s3.envato.com/files/111173317/Preview%20Notebook%20vs%20Pencil.JPG') no-repeat center center/cover
-  }
+.contactForm {
+  margin-top: 5%;
+  background: lightgrey;
+  height: 60vh;
+  display: flex;
+}
+
+.callback-form {
+    width: 75%;
+    padding: 20px 0;
+}
+
+.callback-form label {
+
+    display: block;
+    margin-bottom: 5px;
+}
+
+.callback-form .form-control {
+    margin-bottom: 15px;
+}
+
+.callback-form input {
+    width: 100%;
+    padding: 4px;
+    height: 40px;
+    border: #f5f5f5 1px solid;
+}
+
+.callback-form input:focus {
+    outline-color: #28a745;
+}
+
+.callback-form .btn {
+    padding: 12px;
+    margin-top: 20px;
+}
+.imgSide {
+  background: url('https://s3.envato.com/files/111173317/Preview%20Notebook%20vs%20Pencil.JPG') no-repeat center center/cover;
+  width: 50%;
+}
+
+  // Footer 
+  .footer {
+    background: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 200px;
+    color: white;
+}
+
+.footer a {
+    color: #fff;
+    font-size: 30px;
+    margin: 0 15px;
+}
+
+.footer a:hover {
+    color:#28a745;
+}
+
 `;
 
 export default HomePageStyled;
