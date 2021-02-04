@@ -32,7 +32,7 @@ function App() {
           <Route path="/" component={Home} />
 
         </Switch>
-        <Footer/>
+        {/* <Footer/> */}
       </AuthContext.Provider>
     </div>
   );
