@@ -131,7 +131,7 @@ const Login = () => {
             />
                         
           </label>
-          <StyledButton disabled={disabled}>Sign Me Up!</StyledButton>
+          <StyledButton disabled={disabled}>Log In</StyledButton>
                   
         </LoginForm>
       </LoginDiv>

@@ -7,6 +7,11 @@ import Footer from './Footer';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const gitInfo = [
     {gitID: 'benaiah-varner'},
     {gitID: 'emilyr027'},
@@ -35,7 +40,74 @@ export default function Developers(){
             setDevelopers(temp);
         }
         devInfo()
-    }, [])
+    }, []);
+
+    let tl = gsap.timeline({scrollTrigger: {
+        trigger: ".Benaiah-Varner",
+        start: "top 80%",
+        // scrub: true,
+        toggleActions: "play none none reset"
+    }})
+
+    gsap.from(".Benaiah-Varner", {
+        scrollTrigger: {
+            trigger: ".Benaiah-Varner",
+            start: "top 80%",
+            // scrub: true,
+            toggleActions: "play none none reset"
+        },
+        x: 850,
+        opacity: 0,
+        duration: 2
+    });
+
+    gsap.from(".emilyr027", {
+        scrollTrigger: {
+            trigger:".emilyr027",
+            start: "top 80%",
+            // scrub: true,
+            toggleActions: "play none none reset"
+        },
+        x: -850,
+        opacity: 0,
+        duration: 2
+    });
+
+    gsap.from(".paulstgermain", {
+        scrollTrigger: {
+            trigger: ".paulstgermain",
+            start: "top 80%",
+            // scrub: true,
+            toggleActions: "play none none reset"
+        },
+        x: 850,
+        opacity: 0,
+        duration: 2
+    });
+
+    gsap.from(".OscFig", {
+        scrollTrigger: {
+            trigger:".OscFig",
+            start: "top 80%",
+            // scrub: true,
+            toggleActions: "play none none reset"
+        },
+        x: -850,
+        opacity: 0,
+        duration: 2
+    });
+
+    gsap.from(".Plofland", {
+        scrollTrigger: {
+            trigger: ".Plofland",
+            start: "top 80%",
+            // scrub: true,
+            toggleActions: "play none none reset"
+        },
+        x: 850,
+        opacity: 0,
+        duration: 2
+    });
 
     return(
 <>
@@ -48,7 +120,7 @@ export default function Developers(){
             {
                 developers.map(dev => {
                     return (
-                    <DevCard>
+                    <DevCard className={dev.login}>
                         <h1>{dev.name === null ? dev.login : dev.name}</h1>
                         <DevInfo style={{flexDirection: dev.bio === null ? 'column' : 'row'}}>
                             <img src={dev.image} alt={dev.name}></img>
