@@ -86,7 +86,7 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const user = { ...loginData }; //this line is redundant, see me after class
+    const user = { ...loginData }; //this line is redundant, see me after class -Peter
     console.log('LOGIN DATA', loginData);
     login(user);
     // login(loginData);
