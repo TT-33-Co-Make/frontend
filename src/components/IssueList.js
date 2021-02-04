@@ -11,7 +11,7 @@ function IssuePage() {
     axiosWithAuth()
       .get('issues')
       .then((res) => {
-        console.log('GET ISSUES', res);
+        // console.log('GET ISSUES', res);
         setIssuesList(res.data);
       })
       .catch((err) => {
@@ -20,10 +20,10 @@ function IssuePage() {
   }, []);
   return (
     <div>
-    <div className='navDiv'>
-      <NavBar />
+      <div className="navDiv">
+        <NavBar />
       </div>
-      <IssueList className='issueList'>
+      <IssueList className="issueList">
         <h2>List of Issues</h2>
         <hr id="titleHr" />
         {issuesList.map((issue) => {
