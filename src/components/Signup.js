@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 import StyledButton from '../styles/StyledButton';
 import Footer from './Footer';
 
-import axios from 'axios';
+// import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 import * as yup from 'yup';

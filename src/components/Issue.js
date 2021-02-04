@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import IssueCard from './IssueCard';
-import EditForm from './EditForm';
+// import EditForm from './EditForm';
 
 function Issue() {
-  const [issue, setIssue] = useState({
-    id: '',
-    title: '',
-    description: ''
-  });
+  // const [issue, setIssue] = useState({
+  //   id: '',
+  //   title: '',
+  //   description: ''
+  // });
+
+  const [issue, setIssue] = useState(null);
 
   let isEditing = false;
+  console.log(isEditing);
 
   const params = useParams();
   // const params = useParams(); use this with code bellow if needed
   // const { push } = useHistory();
-
-  useEffect(() => {
-    fetchIssue(params.id);
-  }, []);
 
   function fetchIssue(id) {
     axiosWithAuth
@@ -34,6 +33,10 @@ function Issue() {
       });
   }
 
+  useEffect(() => {
+    fetchIssue(params.id);
+  }, [params.id]);
+
   // Cant test yet
   // const deleteIssue = () => {
   //   axiosWithAuth
@@ -46,6 +49,10 @@ function Issue() {
   //       console.log(err);
   //     })
   // }
+
+  if (!issue) {
+    return <div>Loading Issue information...</div>;
+  }
 
   return (
     <div>
