@@ -42,10 +42,17 @@ export default function Developers(){
         devInfo()
     }, []);
 
+    let tl = gsap.timeline({scrollTrigger: {
+        trigger: ".Benaiah-Varner",
+        start: "top 80%",
+        // scrub: true,
+        toggleActions: "play none none reset"
+    }})
+
     gsap.from(".Benaiah-Varner", {
         scrollTrigger: {
             trigger: ".Benaiah-Varner",
-            start: "top 080%",
+            start: "top 80%",
             // scrub: true,
             toggleActions: "play none none reset"
         },

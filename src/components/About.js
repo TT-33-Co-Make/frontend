@@ -1,11 +1,22 @@
 import react from 'react';
 import styled from 'styled-components';
+import gsap from 'gsap';
+
 
 export default function About() {
+
+    let tl = gsap.timeline({repeat: -1, yoyo: true})
+
+    tl.from('.about-img', {
+        x: -200,
+        y: -200,
+        duration: 15
+    })
+
     return (
         <StyledAbout>
             <Image>
-                <img src='https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80' alt='hands coming together in teamwork'></img>
+                <img src='https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80' alt='hands coming together in teamwork' className='about-img'></img>
             </Image>
             <Text>
             <h1>What <span>IS</span> Co-Make?</h1>
@@ -25,10 +36,11 @@ const StyledAbout = styled.div`
 const Image = styled.div`
     height: 100%;
     width: 50%;
+    overflow: hidden;
 
     img{
-        height: 100%;
-        width: 100%;
+        height: 175%;
+        width: 175%;
     }
 `
 
