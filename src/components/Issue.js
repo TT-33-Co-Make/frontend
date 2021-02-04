@@ -2,24 +2,26 @@ import React, { useEffect, useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useParams, useHistory } from 'react-router-dom';
 import IssueCard from './IssueCard';
-import EditForm from './EditForm';
+// import EditForm from './EditForm';
 
 function Issue() {
-  const [issue, setIssue] = useState({
-    id: '',
-    title: '',
-    description: ''
-  }); //maybe this should be initialized as null(see movie assignment)
+  // const [issue, setIssue] = useState({
+  //   id: '',
+  //   title: '',
+  //   description: ''
+  // });
+
+  const [issue, setIssue] = useState(null);
 
   let isEditing = false;
+  console.log(isEditing);
 
-  const { id } = useParams();
-  // const params = useParams(); use this with code bellow if needed
-  // const { push } = useHistory();
+  const params = useParams();
+  const { push } = useHistory();
 
-  useEffect(() => {
-    axiosWithAuth
-      .get(`issues/${id}`) //maybe params.id
+  function fetchIssue(id) {
+    axiosWithAuth()
+      .get(`issues/${id}`)
       .then((res) => {
         console.log('RETURNED ISSUE OBJECT', res);
         setIssue(res.data);
@@ -28,12 +30,16 @@ function Issue() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }
+
+  useEffect(() => {
+    fetchIssue(params.id);
+  }, [params.id]);
 
   // Cant test yet
   // const deleteIssue = () => {
   //   axiosWithAuth
-  //     .delete(`issues/${id}`)
+  //     .delete(`issues/${params.id}`)
   //     .then(res=>{
   //       console.log('DELETE res:', res)
   //       push('/issues');
@@ -43,14 +49,19 @@ function Issue() {
   //     })
   // }
 
+  if (!issue) {
+    return <div>Loading Issue information...</div>;
+  }
+
   return (
     <div>
-      {isEditing ? <EditForm /> : <IssueCard issue={issue} />}
-
-      {/* set up conditional rendering: if editing = true -> render IssueCard, if false -> render Editform */}
+      {/* {isEditing ? <EditForm /> : <IssueCard issue={issue} />} */}
+      <IssueCard issue={issue} />
+      <h1>TEST</h1>
       {/* NOTE TO SELF: don't forget to add Benaiah's button class to these buttons */}
       {/* <button onClick={deleteIssue}>Delete</button> */}
-      <button onClick={(isEditing = !isEditing)}>Edit</button>
+      {/* <button onClick={(isEditing = !isEditing)}>Edit</button> */}
+      <button onClick={() => push(`issues/${params.id}/edit`)}>Edit</button>
     </div>
   );
 }

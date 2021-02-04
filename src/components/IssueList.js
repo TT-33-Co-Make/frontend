@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import IssueCard from './IssueCard';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import NavBar from './NavBar';
+import Footer from './Footer';
 
 function IssuePage() {
   const [issuesList, setIssuesList] = useState([]);
@@ -38,6 +39,7 @@ function IssuePage() {
         })}
         {/* <IssueCard /> test with dummy data*/}
       </StyleIssueList>
+      <Footer />
     </div>
   );
 }
@@ -50,6 +52,7 @@ const StyleIssueList = styled.div`
   align-items: center;
   padding: 4%;
   background-color: #333333;
+  height: 90vh;
 
   h2 {
     color: whitesmoke;

@@ -87,10 +87,9 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const user = { ...loginData }; //this line is redundant, see me after class -Peter
+    const user = { ...loginData };
     console.log('LOGIN DATA', loginData);
     login(user);
-    // login(loginData);
 
     setLoginData(initLoginValues);
   };
