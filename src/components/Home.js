@@ -115,7 +115,7 @@ const length = issues.length
                     <form action="" className='callback-form'>
                     <div class="form-control">
                         <label for="name"></label>
-                        <input type="text" name='name' id="name" placeholder="name"/>
+                        <input type="text" name='name' id="name" placeholder="Name"/>
 
                     </div>
                     <div class="form-control">
