@@ -17,11 +17,10 @@ function Issue() {
   console.log(isEditing);
 
   const params = useParams();
-  // const params = useParams(); use this with code bellow if needed
   const { push } = useHistory();
 
   function fetchIssue(id) {
-    axiosWithAuth
+    axiosWithAuth()
       .get(`issues/${id}`)
       .then((res) => {
         console.log('RETURNED ISSUE OBJECT', res);
@@ -58,6 +57,7 @@ function Issue() {
     <div>
       {/* {isEditing ? <EditForm /> : <IssueCard issue={issue} />} */}
       <IssueCard issue={issue} />
+      <h1>TEST</h1>
       {/* NOTE TO SELF: don't forget to add Benaiah's button class to these buttons */}
       {/* <button onClick={deleteIssue}>Delete</button> */}
       {/* <button onClick={(isEditing = !isEditing)}>Edit</button> */}

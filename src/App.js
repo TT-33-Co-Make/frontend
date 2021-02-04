@@ -27,7 +27,7 @@ function App() {
       <AuthContext.Provider value={{}}>
         <Switch>
           {/* <a href="/issues">Issue List</a> */}
-          <Route path="/issues" component={IssueList} />
+          <Route exact path="/issues" component={IssueList} />
           <Route path="/issues/:id" component={Issue} />
           <Route path="/issues/:id/edit" component={EditForm} />
           <Route path="/about">
