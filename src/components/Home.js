@@ -44,7 +44,7 @@ const length = issues.length
               necessitatibus exercitationem quo ex ipsum amet, magnam
               voluptatibus consectetur fugit! Illo!
             </p>
-            <StyledButton>Read More</StyledButton>
+            <a href='/about'><StyledButton>Read More</StyledButton></a>
           </div>
         </div>
         {/* Row display */}
@@ -58,7 +58,7 @@ const length = issues.length
               Distinctio quibusdam <br></br>unde voluptate ea itaque architecto,
               commodi reprehenderit quam laudantium iste.
             </p>
-            <StyledButton>Read More</StyledButton>
+            <a href='/about'><StyledButton>Read More</StyledButton></a>
           </div>
         </div>
         <div className="row">
@@ -69,7 +69,7 @@ const length = issues.length
               Distinctio quibusdam <br></br>unde voluptate ea itaque architecto,
               commodi reprehenderit quam laudantium iste.
             </p>
-            <StyledButton className='secondary'>Read More</StyledButton>
+            <a href='/about'><StyledButton className='secondary'>Read More</StyledButton></a>
           </div>
           <div className="rowItem two">
           </div>
