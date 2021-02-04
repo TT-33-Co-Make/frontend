@@ -42,6 +42,7 @@ function Issue() {
   return (
     <div>
       <IssueCard issue={issue} />
+      {/* set up conditional rendering: if editing = true -> render IssueCard, if false -> render Editform */}
       {/* NOTE TO SELF: don't forget to add Benaiah's button class to these buttons */}
       {/* <button onClick={deleteIssue}>Delete</button> */}
       {/* <button onClick={() => push(`https://co-make-tt-33.herokuapp.com/api/issues/{params.id}/edit`)}>Edit</button> */}
