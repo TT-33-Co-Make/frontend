@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import NavBarStyled from '../styles/NavBarStyled'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faDove } from '@fortawesome/free-solid-svg-icons'
-import { useHistory } from 'react-router-dom';
-import axiosWithAuth from '../utils/axiosWithAuth';
 import { debounce } from '../utils/helpers';
 
 const navStyle = {

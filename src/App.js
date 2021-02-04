@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Route, Switch, Redirect, } from 'react-router-dom';
 import './App.css';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 
 // Contexts
 import { AuthContext } from './contexts/AuthContext';
