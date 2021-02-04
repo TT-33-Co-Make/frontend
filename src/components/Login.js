@@ -88,7 +88,9 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const user = { ...loginData };
-    console.log(loginData);
+
+    console.log('LOGIN DATA', loginData);
+
     login(user);
 
     setLoginData(initLoginValues);

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import NavBar from './NavBar';
 import StyledButton from '../styles/StyledButton';
 
-import axios from 'axios';
+// import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 
