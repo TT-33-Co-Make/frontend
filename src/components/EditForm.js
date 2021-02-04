@@ -1,8 +1,8 @@
-import React, { useHistory } from 'react';
+import React, { useHistory, useState } from 'react';
 import styled from 'styled-components';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
-function EditForm({ issue }) {
+function EditForm({ issue, getIssues }) {
   const [formValues, setFormValues] = useState(issue);
 
   const { push } = useHistory();
@@ -18,14 +18,14 @@ function EditForm({ issue }) {
     console.log(formValues);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
       .put(`issues/${formValues.id}`, formValues)
       .then((res) => {
         console.log(res);
 
-        push(`/`);
+        push(`/${formValues.id}`);
       })
       .catch((err) => {
         console.log(err);
