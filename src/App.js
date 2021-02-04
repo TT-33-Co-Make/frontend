@@ -1,7 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
+
 import Issue from './components/Issue';
+
 // import Footer from './components/Footer';
 
 // Contexts
@@ -16,15 +18,19 @@ import Login from './components/Login';
 import IssueList from './components/IssueList';
 import EditForm from './components/EditForm';
 import Developers from './components/Developers';
+import Logout from './components/Logout';
 
 function App() {
-  const onScroll = (e) => {
-    console.log(e);
-  };
+
+  const [loginStatus, setLoginStatus] = useState(false)
+
+const onScroll = e => {
+  console.log(e);
+}
 
   return (
     <div className="App" onScroll={onScroll}>
-      <AuthContext.Provider value={{}}>
+      <AuthContext.Provider value={{loginStatus, setLoginStatus}}>
         <Switch>
           {/* <a href="/issues">Issue List</a> */}
           <Route exact path="/issues" component={IssueList} />
@@ -34,6 +40,7 @@ function App() {
             <Developers />
           </Route>
           <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout}/>
           <Route path="/signup" component={Signup} />
           <Route path="/" component={Home} />
         </Switch>
