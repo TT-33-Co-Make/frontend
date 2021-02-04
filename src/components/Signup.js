@@ -71,7 +71,7 @@ export default function Signup(){
         axios.post('https://co-make-tt-33.herokuapp.com/api/register', signupData)
         .then(res => {
             console.log(res);
-            push('/login');
+            push('/issues');
         })
         .catch(err => {
             console.log(err);

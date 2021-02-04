@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { debounce } from '../utils/helpers';
 
-
 const navStyle = {
     zIndex: '10',
     display: 'flex',
@@ -16,30 +15,6 @@ const navStyle = {
     width: '100%',
     transition: 'top 0.3s'
 }
-
-// document.addEventListener('scroll', e => {
-//     const navbar = document.querySelector('#nav');
-    // console.log('called ',navbar)
-
-    
-
-//     if(window.oldScroll > window.scrollY) {
-//         if(window.pageYOffset === 0){
-//          navbar.classList.add('top');
-//           navbar.style.transform = 'translateY(0px)'
-//         }
-
-//      } else {
-         
-//              navbar.classList.remove('top');
-//              navbar.style.transform = 'translateY(-70px)'
-
-//      }
-
-//      window.oldScroll = window.scrollY;
-  
-//      console.log(window.oldScroll + '|' + window.scrollY)
-// })
 
 const NavBar = () => {
 
@@ -60,27 +35,6 @@ const NavBar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
 
     }, [oldScroll, visible, handleScroll])
-
-    // const onScroll = (e) => {
-
-    //     const navbar = e.target.name
-    //     console.log('called ',navbar)
-    
-    //     if(this.oldScroll > this.scrollY) {
-    //         if(window.pageYOffset === 0){
-    //          navbar.classList.add('top');
-    //           navbar.style.transform = 'translateY(0px)'
-    
-    //      }} else {
-             
-    //              navbar.classList.remove('top');
-    //              navbar.style.transform = 'translateY(-70px)'
-    
-    //      }
-      
-    //      this.oldScroll = this.scrollY;
-        
-    // }
 
     return(
         <div style={{...navStyle, top: visible ? '0' : '-70px'}}>
@@ -105,3 +59,26 @@ const NavBar = () => {
 }
 
 export default NavBar;
+
+// / / / / / CODE GRAVEYARD - RIP / / / / / //
+
+    // const onScroll = (e) => {
+
+    //     const navbar = e.target.name
+    //     console.log('called ',navbar)
+    
+    //     if(this.oldScroll > this.scrollY) {
+    //         if(window.pageYOffset === 0){
+    //          navbar.classList.add('top');
+    //           navbar.style.transform = 'translateY(0px)'
+    
+    //      }} else {
+             
+    //              navbar.classList.remove('top');
+    //              navbar.style.transform = 'translateY(-70px)'
+    
+    //      }
+      
+    //      this.oldScroll = this.scrollY;
+        
+    // }

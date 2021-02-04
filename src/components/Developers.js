@@ -80,8 +80,7 @@ const DevDiv = styled.div`
 `
 
 const DevContainer = styled.section`
-    /* padding-top: 4.3%;
-    background: #333; */
+    
 `
 
 const DevCard = styled.div`
