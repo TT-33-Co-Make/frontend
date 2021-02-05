@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useParams, useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import IssueCard from './IssueCard';
+import NavBar from './NavBar';
+import Footer from './Footer';
 // import EditForm from './EditForm';
 
 function Issue() {
-  // const [issue, setIssue] = useState({
-  //   id: '',
-  //   title: '',
-  //   description: ''
-  // });
+  const [issue, setIssue] = useState({
+    id: '',
+    title: '',
+    description: ''
+  });
 
-  const [issue, setIssue] = useState(null);
+  // const [issue, setIssue] = useState(null);
 
   // let isEditing = false;
   // console.log(isEditing);
@@ -54,32 +57,29 @@ function Issue() {
   // }
 
   return (
-    <div>
-      {/* {isEditing ? <EditForm /> : <IssueCard issue={issue} />} */}
-      <IssueCard issue={issue} />
-      <h1>TEST</h1>
-      {/* NOTE TO SELF: don't forget to add Benaiah's button class to these buttons */}
-      {/* <button onClick={deleteIssue}>Delete</button> */}
-      {/* <button onClick={(isEditing = !isEditing)}>Edit</button> */}
-      <button onClick={() => push(`issues/${params.id}/edit`)}>Edit</button>
-    </div>
+    <>
+      <NavBar />
+      <StyledIssue>
+        {/* {isEditing ? <EditForm /> : <IssueCard issue={issue} />} */}
+        <IssueCard issue={issue} />
+        <h1>TEST</h1>
+        {/* NOTE TO SELF: don't forget to add Benaiah's button class to these buttons */}
+        {/* <button onClick={deleteIssue}>Delete</button> */}
+        {/* <button onClick={(isEditing = !isEditing)}>Edit</button> */}
+        <button onClick={() => push(`issues/${params.id}/edit`)}>Edit</button>
+      </StyledIssue>
+      <Footer />
+    </>
   );
 }
 
 export default Issue;
 
-//Use the following code instead if useEffect isn't fetching the issue↙↙↙
-// useEffect(() => {
-//   fetchIssue(params.id);
-// }, [params.id]);
-
-// if (!issue) {
-//   return <div>Loading movie information...</div>;
-// }
-
-// const fetchIssue = (id) => {
-//   axiosWithAuth()
-//     .get(`issues/${id}`)
-//     .then((res) => setIssue(res.data))
-//     .catch((err) => console.log(err.response));
-// };
+const StyledIssue = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4%;
+  background-color: #333333;
+  height: 90vh;
+`;
