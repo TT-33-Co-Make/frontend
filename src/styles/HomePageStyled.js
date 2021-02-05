@@ -22,6 +22,7 @@ const HomePageStyled = styled.div`
   }
   .hero .content p {
     font-size: 1.1rem;
+    width: 75%;
   }
   .hero::before {
     content: "";
@@ -170,7 +171,7 @@ const HomePageStyled = styled.div`
 .contactForm {
   margin-top: 5%;
   background: lightgrey;
-  height: 60vh;
+  height: 65vh;
   display: flex;
 }
 

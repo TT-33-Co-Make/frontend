@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import NavBar from './NavBar';
 import StyledButton from '../styles/StyledButton';
+import AltFooterStyled from '../styles/AltFooterStyled';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 // import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -146,7 +149,19 @@ export default function Signup() {
                   
         </SignupForm>
       </SignUpDiv>
-      <Footer />
+      <AltFooterStyled>
+        <div className="social">
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faFacebook}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faTwitter}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faInstagram}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faGithub}/></a>
+        </div>
+        <p>Copyright &copy; 2020 - Co-Make</p>
+    </AltFooterStyled>
     </>
   );
 }
