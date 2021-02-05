@@ -8,8 +8,8 @@ import { useHistory } from 'react-router-dom';
 
 import * as yup from 'yup';
 import SignupSchema from '../validation/SignupSchema';
-import axiosWithAuth from '../utils/axiosWithAuth';
 import Footer from './Footer';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 // / / / / / Initial Values for Signup Form / / / / / //
 
@@ -72,11 +72,12 @@ export default function Signup() {
     axiosWithAuth()
       .post('https://co-make-tt-33.herokuapp.com/api/register', signupData)
       .then((res) => {
-        console.log(res);
+        console.log('RETURNED data', res);
+        console.log('SIGNUP state', signupData);
         push('/issues');
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data);
       });
     setSignupData(initSignupValues);
   };

@@ -11,10 +11,8 @@ import { AuthContext } from './contexts/AuthContext';
 import { IssuesContext } from './contexts/IssuesContext';
 
 // Components
-
 import Signup from './components/Signup';
 import Home from './components/Home';
-// import NavBar from './components/NavBar';
 import Login from './components/Login';
 import IssueList from './components/IssueList';
 import EditForm from './components/EditForm';
@@ -53,9 +51,9 @@ function App() {
     axiosWithAuth()
       .get(`issues/${id}`)
       .then((res) => {
-        console.log('RETURNED ISSUE OBJECT', res);
+        console.log('ISSUE OBJECT', res);
         setIssue(res.data);
-        console.log('ISSUE STATE', issue);
+        console.log('ISSUE STATE set at App.js', issue);
       })
       .catch((err) => {
         console.log(err);
@@ -69,7 +67,6 @@ function App() {
           value={{ issuesList, getIssues, issue, fetchIssue }}
         >
           <Switch>
-            {/* <a href="/issues">Issue List</a> */}
             <Route exact path="/issues" component={IssueList} />
             <Route path="/issues/:id/edit" component={EditForm} />
             <Route path="/issues/add" component={AddForm} />
@@ -80,7 +77,6 @@ function App() {
             <Route path="/signup" component={Signup} />
             <Route path="/" component={Home} />
           </Switch>
-          {/* <Footer/> */}
         </IssuesContext.Provider>
       </AuthContext.Provider>
     </div>
