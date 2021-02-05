@@ -74,7 +74,7 @@ const Login = () => {
     axiosWithAuth()
       .post('login', user)
       .then((res) => {
-        console.log(res);
+        console.log('LOGIN', res);
         sessionStorage.setItem('token', res.data.token);
         push('/issues');
       })

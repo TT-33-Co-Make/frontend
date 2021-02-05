@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import IssueCard from './IssueCard';
 import NavBar from './NavBar';
 import Footer from './Footer';
+import StyledButton from '../styles/StyledButton';
 // import EditForm from './EditForm';
 
 function Issue() {
@@ -63,10 +64,11 @@ function Issue() {
         {/* {isEditing ? <EditForm /> : <IssueCard issue={issue} />} */}
         <IssueCard issue={issue} />
         <h1>TEST</h1>
-        {/* NOTE TO SELF: don't forget to add Benaiah's button class to these buttons */}
         {/* <button onClick={deleteIssue}>Delete</button> */}
         {/* <button onClick={(isEditing = !isEditing)}>Edit</button> */}
-        <button onClick={() => push(`issues/${params.id}/edit`)}>Edit</button>
+        <Link to={`issues/${issue.id}/edit`}>
+          <StyledButton>Edit</StyledButton>
+        </Link>
       </StyledIssue>
       <Footer />
     </>

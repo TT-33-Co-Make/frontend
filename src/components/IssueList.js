@@ -1,28 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import StyledButton from '../styles/StyledButton';
 import IssueCard from './IssueCard';
-import axiosWithAuth from '../utils/axiosWithAuth';
 import NavBar from './NavBar';
 import Footer from './Footer';
 
 function IssuePage() {
-  const [issuesList, setIssuesList] = useState([]);
-
+  const { issuesList, getIssues } = useContext();
+  const params = useParams();
   const { push } = useHistory();
-
-  const getIssues = () => {
-    axiosWithAuth()
-      .get('issues')
-      .then((res) => {
-        // console.log('GET ISSUES', res);
-        setIssuesList(res.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
 
   useEffect(() => {
     getIssues();
@@ -41,7 +28,12 @@ function IssuePage() {
         </StyledButton>
         {issuesList.map((issue) => {
           return (
-            <IssueCard key={issue.id} issue={issue} getIssues={getIssues} />
+            <IssueCard
+              key={issue.id}
+              issue={issue}
+              getIssues={getIssues}
+              issueId={params.id}
+            />
           );
         })}
       </StyleIssueList>

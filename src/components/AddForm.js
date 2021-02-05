@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import StyledButton from '../styles/StyledButton';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import StyledForm from './EditForm';
 
@@ -9,6 +10,7 @@ function AddForm() {
     description: ''
   });
 
+  // console.log('ANYTHING');
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -45,6 +47,7 @@ function AddForm() {
         placeholder={'Description of Issue'}
         onchange={handleChange}
       ></textarea>
+      <StyledButton>Submit</StyledButton>
     </StyledForm>
   );
 }

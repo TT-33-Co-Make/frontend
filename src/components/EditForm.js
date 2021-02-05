@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import StyledButton from '../styles/StyledButton';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import { IssuesContext } from '../contexts/IssuesContext';
 
-function EditForm({ issue, getIssues }) {
-  const [formValues, setFormValues] = useState(issue);
+function EditForm() {
+  const { issue } = useContext(IssuesContext);
+  console.log(issue);
+  const [formValues, setFormValues] = useState({
+    ...issue,
+    title: issue.title
+  });
   const { id } = useParams();
   const { push } = useHistory();
 
@@ -62,6 +69,7 @@ function EditForm({ issue, getIssues }) {
       >
         {issue.description}
       </textarea>
+      <StyledButton>Submit</StyledButton>
     </StyledForm>
   );
 }
