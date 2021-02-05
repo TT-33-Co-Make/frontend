@@ -7,7 +7,7 @@ import { AuthContext } from '../contexts/AuthContext';
 import NavBar from './NavBar';
 import StyledButton from '../styles/StyledButton';
 import Footer from './Footer';
-import axiosWithAuth from '../utils/axiosWithAuth';
+import axios from 'axios';
 
 const initLoginValues = {
   username: '',
@@ -71,11 +71,10 @@ const Login = () => {
   }, [loginData]);
 
   const login = (user) => {
-    return axiosWithAuth()
+    return axios
       .post('https://comake-backend-lambda.herokuapp.com/api/login', user)
       .then((res) => {
-        console.log('LOGIN', res);
-        sessionStorage.setItem('token', res.data.token);
+        console.log('LOGIN SUCCESS', res);
         setLoginStatus(true);
         push('/issues');
       })
