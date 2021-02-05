@@ -23,14 +23,12 @@ import Developers from './components/Developers';
 import axiosWithAuth from './utils/axiosWithAuth';
 import Logout from './components/Logout';
 
-
 function App() {
+  const [loginStatus, setLoginStatus] = useState(false);
 
-  const [loginStatus, setLoginStatus] = useState(false)
-
-const onScroll = e => {
-  console.log(e);
-}
+  const onScroll = (e) => {
+    console.log(e);
+  };
 
   const [issuesList, setIssuesList] = useState([]);
   const [issue, setIssue] = useState({
@@ -43,11 +41,11 @@ const onScroll = e => {
     axiosWithAuth()
       .get('issues')
       .then((res) => {
-        // console.log('GET ISSUES', res);
+        console.log('GET ISSUES APP Component', res);
         setIssuesList(res.data);
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err.response.data);
       });
   };
 
@@ -66,7 +64,7 @@ const onScroll = e => {
 
   return (
     <div className="App" onScroll={onScroll}>
-      <AuthContext.Provider value={{loginStatus, setLoginStatus}}>
+      <AuthContext.Provider value={{ loginStatus, setLoginStatus }}>
         <IssuesContext.Provider
           value={{ issuesList, getIssues, issue, fetchIssue }}
         >
@@ -78,13 +76,12 @@ const onScroll = e => {
             <Route path="/issues/:id" component={Issue} />
             <Route path="/about" component={Developers} />
             <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout}/>
+            <Route path="/logout" component={Logout} />
             <Route path="/signup" component={Signup} />
             <Route path="/" component={Home} />
           </Switch>
           {/* <Footer/> */}
         </IssuesContext.Provider>
-
       </AuthContext.Provider>
     </div>
   );
