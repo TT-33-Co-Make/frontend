@@ -4,7 +4,7 @@ import StyledForm from './EditForm';
 
 function AddForm() {
   const [formValues, setFormValues] = useState({
-    id: '',
+    // id: '',
     title: '',
     description: ''
   });
@@ -21,11 +21,9 @@ function AddForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post(`issues/${formValues.id}`, formValues)
+      .post(`issues`, formValues)
       .then((res) => {
         console.log(res);
-
-        push(`/${formValues.id}`);
       })
       .catch((err) => {
         console.log(err);

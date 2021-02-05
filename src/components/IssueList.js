@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import StyledButton from '../styles/StyledButton';
 import IssueCard from './IssueCard';
@@ -8,6 +9,8 @@ import Footer from './Footer';
 
 function IssuePage() {
   const [issuesList, setIssuesList] = useState([]);
+
+  const { push } = useHistory();
 
   const getIssues = () => {
     axiosWithAuth()
@@ -30,10 +33,12 @@ function IssuePage() {
       <div className="navDiv">
         <NavBar />
       </div>
-      <StyleIssueList className="issueList" onClick={}>
+      <StyleIssueList className="issueList">
         <h2>List of Issues</h2>
         <hr id="titleHr" />
-        <StyledButton>Add An Issue</StyledButton>
+        <StyledButton onClick={() => push('issues/add')}>
+          Add An Issue
+        </StyledButton>
         {issuesList.map((issue) => {
           return (
             <IssueCard key={issue.id} issue={issue} getIssues={getIssues} />
