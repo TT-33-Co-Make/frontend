@@ -73,7 +73,7 @@ const Login = () => {
     return axios
       .post('https://comake-backend-lambda.herokuapp.com/api/login', user)
       .then((res) => {
-        console.log(res);
+        console.log('LOGIN', res);
         sessionStorage.setItem('token', res.data.token);
         setLoginStatus(true)
         push('/issues');

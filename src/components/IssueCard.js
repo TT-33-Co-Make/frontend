@@ -1,17 +1,22 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 function IssueCard({ issue }) {
   const { push } = useHistory();
+  const { params } = useParams();
 
   return (
     <StyledIssueCard onClick={() => push(`/issues/${issue.id}`)}>
       <div class="issueHeader">
         <h3>{issue.title}</h3>
-        <FontAwesomeIcon icon={faArrowUp} class="icon"></FontAwesomeIcon>
+        <FontAwesomeIcon
+          icon={faArrowUp}
+          className={params === '/issues/add' ? 'noIcon' : 'icon'}
+          // class="icon"
+        ></FontAwesomeIcon>
       </div>
       <hr />
       <p>{issue.description}</p>
@@ -46,6 +51,9 @@ const StyledIssueCard = styled.div`
       padding: 2%;
     }
 
+    .noIcon {
+      display: none;
+    }
     .icon {
       height: 4rem;
       margin-right: 3%;

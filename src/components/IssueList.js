@@ -1,24 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
+//Components
+import { IssuesContext } from '../contexts/IssuesContext';
+import StyledButton from '../styles/StyledButton';
 import IssueCard from './IssueCard';
-import axiosWithAuth from '../utils/axiosWithAuth';
 import NavBar from './NavBar';
 import Footer from './Footer';
 
 function IssuePage() {
-  const [issuesList, setIssuesList] = useState([]);
-
-  const getIssues = () => {
-    axiosWithAuth()
-      .get('issues')
-      .then((res) => {
-        // console.log('GET ISSUES', res);
-        setIssuesList(res.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
+  const { issuesList, getIssues } = useContext(IssuesContext);
+  const params = useParams();
+  const { push } = useHistory();
 
   useEffect(() => {
     getIssues();
@@ -32,12 +26,19 @@ function IssuePage() {
       <StyleIssueList className="issueList">
         <h2>List of Issues</h2>
         <hr id="titleHr" />
+        <StyledButton onClick={() => push('issues/add')}>
+          Add An Issue
+        </StyledButton>
         {issuesList.map((issue) => {
           return (
-            <IssueCard key={issue.id} issue={issue} getIssues={getIssues} />
+            <IssueCard
+              key={issue.id}
+              issue={issue}
+              getIssues={getIssues}
+              issueId={params.id}
+            />
           );
         })}
-        {/* <IssueCard /> test with dummy data*/}
       </StyleIssueList>
       <Footer />
     </div>
