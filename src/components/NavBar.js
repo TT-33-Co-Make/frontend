@@ -12,7 +12,8 @@ const navStyle = {
     alignItems: 'center',
     position: 'fixed',
     width: '100%',
-    transition: 'top 0.3s'
+    transition: 'top 0.3s',
+    background: 'rgba(33, 33, 33, 0.5)'
 }
 
 const NavBar = () => {
