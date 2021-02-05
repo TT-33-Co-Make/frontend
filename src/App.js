@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
+
 import Issue from './components/Issue';
+
 // import Footer from './components/Footer';
 
 // Contexts
@@ -19,11 +21,16 @@ import EditForm from './components/EditForm';
 import AddForm from './components/AddForm';
 import Developers from './components/Developers';
 import axiosWithAuth from './utils/axiosWithAuth';
+import Logout from './components/Logout';
+
 
 function App() {
-  const onScroll = (e) => {
-    console.log(e);
-  };
+
+  const [loginStatus, setLoginStatus] = useState(false)
+
+const onScroll = e => {
+  console.log(e);
+}
 
   const [issuesList, setIssuesList] = useState([]);
   const [issue, setIssue] = useState({
@@ -59,23 +66,25 @@ function App() {
 
   return (
     <div className="App" onScroll={onScroll}>
-      <AuthContext.Provider value={{}}>
+      <AuthContext.Provider value={{loginStatus, setLoginStatus}}>
         <IssuesContext.Provider
           value={{ issuesList, getIssues, issue, fetchIssue }}
         >
           <Switch>
             {/* <a href="/issues">Issue List</a> */}
+            <Route exact path="/issues" component={IssueList} />
             <Route path="/issues/:id/edit" component={EditForm} />
             <Route path="/issues/add" component={AddForm} />
             <Route path="/issues/:id" component={Issue} />
-            <Route exact path="/issues" component={IssueList} />
             <Route path="/about" component={Developers} />
             <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout}/>
             <Route path="/signup" component={Signup} />
             <Route path="/" component={Home} />
           </Switch>
           {/* <Footer/> */}
         </IssuesContext.Provider>
+
       </AuthContext.Provider>
     </div>
   );
