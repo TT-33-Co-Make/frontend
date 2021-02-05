@@ -170,7 +170,7 @@ const HomePageStyled = styled.div`
 .contactForm {
   margin-top: 5%;
   background: lightgrey;
-  height: 60vh;
+  height: 65vh;
   display: flex;
 }
 
