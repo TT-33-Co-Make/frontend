@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import StyledButton from '../styles/StyledButton';
 import IssueCard from './IssueCard';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import NavBar from './NavBar';
@@ -29,15 +30,15 @@ function IssuePage() {
       <div className="navDiv">
         <NavBar />
       </div>
-      <StyleIssueList className="issueList">
+      <StyleIssueList className="issueList" onClick={}>
         <h2>List of Issues</h2>
         <hr id="titleHr" />
+        <StyledButton>Add An Issue</StyledButton>
         {issuesList.map((issue) => {
           return (
             <IssueCard key={issue.id} issue={issue} getIssues={getIssues} />
           );
         })}
-        {/* <IssueCard /> test with dummy data*/}
       </StyleIssueList>
       <Footer />
     </div>
