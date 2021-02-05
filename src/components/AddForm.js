@@ -39,13 +39,13 @@ function AddForm() {
         name="title"
         value={formValues.title}
         placeholder={'Title of Issue'}
-        onchange={handleChange}
+        onChange={handleChange}
       ></input>
       <textarea
         name="description"
         value={formValues.description}
         placeholder={'Description of Issue'}
-        onchange={handleChange}
+        onChange={handleChange}
       ></textarea>
       <StyledButton>Submit</StyledButton>
     </StyledForm>

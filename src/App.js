@@ -26,6 +26,11 @@ function App() {
   };
 
   const [issuesList, setIssuesList] = useState([]);
+  const [issue, setIssue] = useState({
+    id: '',
+    title: '',
+    description: ''
+  });
 
   const getIssues = () => {
     axiosWithAuth()
@@ -39,19 +44,32 @@ function App() {
       });
   };
 
+  function fetchIssue(id) {
+    axiosWithAuth()
+      .get(`issues/${id}`)
+      .then((res) => {
+        console.log('RETURNED ISSUE OBJECT', res);
+        setIssue(res.data);
+        console.log('ISSUE STATE', issue);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <div className="App" onScroll={onScroll}>
       <AuthContext.Provider value={{}}>
-        <IssuesContext.Provider value={{ issuesList, getIssues }}>
+        <IssuesContext.Provider
+          value={{ issuesList, getIssues, issue, fetchIssue }}
+        >
           <Switch>
             {/* <a href="/issues">Issue List</a> */}
             <Route path="/issues/:id/edit" component={EditForm} />
             <Route path="/issues/add" component={AddForm} />
             <Route path="/issues/:id" component={Issue} />
             <Route exact path="/issues" component={IssueList} />
-            <Route path="/about">
-              <Developers />
-            </Route>
+            <Route path="/about" component={Developers} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/" component={Home} />

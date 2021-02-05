@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import StyledButton from '../styles/StyledButton';
-import axiosWithAuth from '../utils/axiosWithAuth';
 import { IssuesContext } from '../contexts/IssuesContext';
+import axiosWithAuth from '../utils/axiosWithAuth';
+import StyledButton from '../styles/StyledButton';
+import styled from 'styled-components';
 
 function EditForm() {
   const { issue } = useContext(IssuesContext);
-  console.log(issue);
+  console.log('EDIT FORM', issue);
   const [formValues, setFormValues] = useState({
     ...issue,
     title: issue.title
@@ -15,7 +15,7 @@ function EditForm() {
   const { id } = useParams();
   const { push } = useHistory();
 
-  console.log('EDIT FORM INCOMING STATE', issue); //test to see what state is coming into the form
+  console.log('EDIT FORM INCOMING STATE', issue);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,14 +58,14 @@ function EditForm() {
         type="text"
         name="title"
         value={formValues.title}
-        onchange={handleChange}
+        onChange={handleChange}
       >
         {issue.title}
       </input>
       <textarea
         name="description"
         value={formValues.description}
-        onchange={handleChange}
+        onChange={handleChange}
       >
         {issue.description}
       </textarea>

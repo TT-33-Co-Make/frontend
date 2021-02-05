@@ -1,13 +1,16 @@
 import React, { useEffect, useContext } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
+//Components
+import { IssuesContext } from '../contexts/IssuesContext';
 import StyledButton from '../styles/StyledButton';
 import IssueCard from './IssueCard';
 import NavBar from './NavBar';
 import Footer from './Footer';
 
 function IssuePage() {
-  const { issuesList, getIssues } = useContext();
+  const { issuesList, getIssues } = useContext(IssuesContext);
   const params = useParams();
   const { push } = useHistory();
 

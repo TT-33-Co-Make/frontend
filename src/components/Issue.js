@@ -1,40 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import axiosWithAuth from '../utils/axiosWithAuth';
-import { useParams, useHistory, Link } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+//Components
+import { IssuesContext } from '../contexts/IssuesContext';
+import StyledButton from '../styles/StyledButton';
 import IssueCard from './IssueCard';
 import NavBar from './NavBar';
 import Footer from './Footer';
-import StyledButton from '../styles/StyledButton';
-// import EditForm from './EditForm';
 
 function Issue() {
-  const [issue, setIssue] = useState({
-    id: '',
-    title: '',
-    description: ''
-  });
-
-  // const [issue, setIssue] = useState(null);
-
-  // let isEditing = false;
-  // console.log(isEditing);
-
+  const { issue, fetchIssue } = useContext(IssuesContext);
   const params = useParams();
-  const { push } = useHistory();
-
-  function fetchIssue(id) {
-    axiosWithAuth()
-      .get(`issues/${id}`)
-      .then((res) => {
-        console.log('RETURNED ISSUE OBJECT', res);
-        setIssue(res.data);
-        console.log('ISSUE STATE', issue);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
 
   useEffect(() => {
     fetchIssue(params.id);
@@ -53,15 +30,10 @@ function Issue() {
   //     })
   // }
 
-  // if (!issue) {
-  //   return <div>Loading Issue information...</div>;
-  // }
-
   return (
     <>
       <NavBar />
       <StyledIssue>
-        {/* {isEditing ? <EditForm /> : <IssueCard issue={issue} />} */}
         <IssueCard issue={issue} />
         <h1>TEST</h1>
         {/* <button onClick={deleteIssue}>Delete</button> */}
