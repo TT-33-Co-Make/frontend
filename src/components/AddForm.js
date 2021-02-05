@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import StyledButton from '../styles/StyledButton';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import StyledForm from './EditForm';
+import Footer from './Footer';
+import NavBar from './NavBar';
 
 function AddForm() {
   const [newIssueValues, setNewIssueValues] = useState([]);
@@ -33,22 +35,28 @@ function AddForm() {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="title"
-        value={newIssueValues.title}
-        placeholder={'Title of Issue'}
-        onChange={handleChange}
-      ></input>
-      <textarea
-        name="description"
-        value={newIssueValues.description}
-        placeholder={'Description of Issue'}
-        onChange={handleChange}
-      ></textarea>
-      <StyledButton>Submit</StyledButton>
-    </StyledForm>
+    <>
+      <NavBar />
+      <StyledForm onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="title"
+          value={newIssueValues.title}
+          placeholder={'Title of Issue'}
+          onChange={handleChange}
+        />
+        <textarea
+          name="description"
+          value={newIssueValues.description}
+          placeholder={'Description of Issue'}
+          onChange={handleChange}
+          // rows="4"
+          // cols="50"
+        />
+        <StyledButton>Submit</StyledButton>
+      </StyledForm>
+      <Footer />
+    </>
   );
 }
 

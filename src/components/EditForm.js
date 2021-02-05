@@ -59,16 +59,16 @@ function EditForm() {
         name="title"
         value={formValues.title}
         onChange={handleChange}
-      >
-        {issue.title}
-      </input>
+        placeholder={issue.title}
+      />
+
       <textarea
         name="description"
         value={formValues.description}
         onChange={handleChange}
-      >
-        {issue.description}
-      </textarea>
+        placeholder={issue.description}
+      />
+
       <StyledButton>Submit</StyledButton>
     </StyledForm>
   );
