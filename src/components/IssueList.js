@@ -7,7 +7,9 @@ import { IssuesContext } from '../contexts/IssuesContext';
 import StyledButton from '../styles/StyledButton';
 import IssueCard from './IssueCard';
 import NavBar from './NavBar';
-import Footer from './Footer';
+import AltFooterStyled from '../styles/AltFooterStyled';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 function IssuePage() {
   const { issuesList, getIssuesList } = useContext(IssuesContext);
@@ -33,7 +35,19 @@ function IssuePage() {
           return <IssueCard key={issue.id} issueId={params.id} />;
         })}
       </StyleIssueList>
-      <Footer />
+      <AltFooterStyled>
+        <div className="social">
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faFacebook}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faTwitter}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faInstagram}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faGithub}/></a>
+        </div>
+        <p>Copyright &copy; 2020 - Co-Make</p>
+    </AltFooterStyled>
     </div>
   );
 }
