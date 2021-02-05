@@ -2,11 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import * as yup from 'yup';
 import LoginSchema from '../validation/LoginSchema';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 import NavBar from './NavBar';
-import StyledButton from '../styles/StyledButton'
+import StyledButton from '../styles/StyledButton';
+import Footer from './Footer';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const initLoginValues = {
   username: '',
@@ -25,7 +26,7 @@ const Login = () => {
 
   const [loginData, setLoginData] = useState(initLoginValues);
 
-  const {setLoginStatus} = useContext(AuthContext)
+  const { setLoginStatus } = useContext(AuthContext);
   const { push } = useHistory();
   //const [authorized, setAuthorized] = useState(AuthContext);
 
@@ -70,12 +71,12 @@ const Login = () => {
   }, [loginData]);
 
   const login = (user) => {
-    return axios
+    return axiosWithAuth()
       .post('https://comake-backend-lambda.herokuapp.com/api/login', user)
       .then((res) => {
         console.log('LOGIN', res);
         sessionStorage.setItem('token', res.data.token);
-        setLoginStatus(true)
+        setLoginStatus(true);
         push('/issues');
       })
       .catch((err) => {
@@ -101,42 +102,43 @@ const Login = () => {
   return (
     <>
       <NavBar />
-    
-    <LoginDiv>
-    <div className='text'>
-      <h2>Log in here!</h2>
-    </div>
-              
-      <LoginForm onSubmit={handleSubmit}>
-        <label>
-          User Name / Email: <br />
-          <Error>{errors.username}</Error> <br />
-                          
-          <input
-            // type="text"
-            name="username"
-            value={loginData.username}
-            onChange={handleChange}
-          />
-                      
-        </label>
-                    
-        <label>
-          Password: <br />
-          <Error>{errors.password}</Error> <br />
-                          
-          <input
-            type="password"
-            name="password"
-            value={loginData.password}
-            onChange={handleChange}
-          />
-                      
-        </label>
-        <StyledButton disabled={disabled}>Sign Me Up!</StyledButton>
+
+      <LoginDiv>
+        <div className="text">
+          <h2>Log in here!</h2>
+        </div>
                 
-      </LoginForm>
-    </LoginDiv>
+        <LoginForm onSubmit={handleSubmit}>
+          <label>
+            User Name / Email: <br />
+            <Error>{errors.username}</Error> <br />
+                            
+            <input
+              // type="text"
+              name="username"
+              value={loginData.username}
+              onChange={handleChange}
+            />
+                        
+          </label>
+                      
+          <label>
+            Password: <br />
+            <Error>{errors.password}</Error> <br />
+                            
+            <input
+              type="password"
+              name="password"
+              value={loginData.password}
+              onChange={handleChange}
+            />
+                        
+          </label>
+          <StyledButton disabled={disabled}>Sign Me Up!</StyledButton>
+                  
+        </LoginForm>
+      </LoginDiv>
+      <Footer />
     </>
   );
 };
@@ -154,18 +156,18 @@ const LoginDiv = styled.div`
   background: #333;
   /* z-index: 0; */
 
-  .text{
+  .text {
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #FFF;
+    color: #fff;
   }
 
-  input{
+  input {
     border-radius: 25px;
     border: 1px solid black;
-    }
+  }
 `;
 
 const LoginForm = styled.form`
@@ -178,7 +180,7 @@ const LoginForm = styled.form`
   border: 1px solid black;
   /* border-radius: 25px; */
   margin-top: 6%;
-  background: #FFF;
+  background: #fff;
   /* z-index: 1; */
 
   input {
@@ -186,17 +188,17 @@ const LoginForm = styled.form`
     border: 1px solid black;
   }
 
-  button{
-        &:disabled{
-            border: 1px solid red;
-            color: red;
-            cursor: not-allowed;
+  button {
+    &:disabled {
+      border: 1px solid red;
+      color: red;
+      cursor: not-allowed;
 
-            &:hover{
-                box-shadow: none;
-            }
-        }
+      &:hover {
+        box-shadow: none;
+      }
     }
+  }
 `;
 
 const Error = styled.span`
