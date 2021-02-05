@@ -22,6 +22,7 @@ const HomePageStyled = styled.div`
   }
   .hero .content p {
     font-size: 1.1rem;
+    width: 75%;
   }
   .hero::before {
     content: "";
