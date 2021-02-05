@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import StyledButton from '../styles/StyledButton';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import StyledForm from './EditForm';
 
 function AddForm() {
-  const [formValues, setFormValues] = useState({
-    // id: '',
-    title: '',
-    description: ''
-  });
+  const [newIssueValues, setNewIssueValues] = useState([]);
+
+  const { push } = useHistory();
 
   // console.log('ANYTHING');
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
+    setNewIssueValues({
+      ...newIssueValues,
       [name]: value
     });
-    console.log(formValues);
+    console.log(newIssueValues);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post(`issues`, formValues)
+      .post(`issues`, newIssueValues)
       .then((res) => {
         console.log(res);
+        push('issues');
       })
       .catch((err) => {
         console.log(err);
@@ -37,13 +37,13 @@ function AddForm() {
       <input
         type="text"
         name="title"
-        value={formValues.title}
+        value={newIssueValues.title}
         placeholder={'Title of Issue'}
         onChange={handleChange}
       ></input>
       <textarea
         name="description"
-        value={formValues.description}
+        value={newIssueValues.description}
         placeholder={'Description of Issue'}
         onChange={handleChange}
       ></textarea>
