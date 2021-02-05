@@ -50,6 +50,15 @@ const StyledIssueCard = styled.div`
       height: 4rem;
       margin-right: 3%;
       padding: 2%;
+      border-radius: 50%;
+      :hover {
+        box-shadow: 
+        /* top */ rgba(0, 0, 0, 0.2) 0px -6px 10px,
+          /* right */ rgba(0, 0, 0, 0.2) 6px 0px 10px,
+          /* bottom */ rgba(0, 0, 0, 0.2) 0px 6px 10px,
+          /* left */ rgba(0, 0, 0, 0.2) -6px 0px 10px;
+        transition: 0.4s ease-in-out;
+      }
     }
   }
 
