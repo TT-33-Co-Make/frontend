@@ -76,6 +76,7 @@ const Login = () => {
       .then((res) => {
         console.log('LOGIN SUCCESS', res);
         setLoginStatus(true);
+        sessionStorage.setItem('token', res.data.token);
         push('/issues');
       })
       .catch((err) => {
