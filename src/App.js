@@ -35,7 +35,7 @@ function App() {
     description: ''
   });
 
-  const getIssues = () => {
+  const getIssuesList = () => {
     axiosWithAuth()
       .get('issues')
       .then((res) => {
@@ -64,7 +64,7 @@ function App() {
     <div className="App" onScroll={onScroll}>
       <AuthContext.Provider value={{ loginStatus, setLoginStatus }}>
         <IssuesContext.Provider
-          value={{ issuesList, getIssues, issue, fetchIssue }}
+          value={{ issuesList, getIssuesList, issue, fetchIssue }}
         >
           <Switch>
             <Route exact path="/issues" component={IssueList} />

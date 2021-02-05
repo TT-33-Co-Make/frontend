@@ -15,7 +15,6 @@ function IssueCard({ issue }) {
         <FontAwesomeIcon
           icon={faArrowUp}
           className={params === '/issues/add' ? 'noIcon' : 'icon'}
-          // class="icon"
         ></FontAwesomeIcon>
       </div>
       <hr />

@@ -10,12 +10,12 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 
 function IssuePage() {
-  const { issuesList, getIssues } = useContext(IssuesContext);
+  const { issuesList, getIssuesList } = useContext(IssuesContext);
   const params = useParams();
   const { push } = useHistory();
 
   useEffect(() => {
-    getIssues();
+    getIssuesList();
   }, []);
 
   return (
@@ -30,14 +30,7 @@ function IssuePage() {
           Add An Issue
         </StyledButton>
         {issuesList.map((issue) => {
-          return (
-            <IssueCard
-              key={issue.id}
-              issue={issue}
-              getIssues={getIssues}
-              issueId={params.id}
-            />
-          );
+          return <IssueCard key={issue.id} issueId={params.id} />;
         })}
       </StyleIssueList>
       <Footer />
