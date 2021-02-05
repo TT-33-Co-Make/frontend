@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import NavBar from './NavBar';
 import About from './About';
 import Footer from './Footer';
+import AltFooterStyled from '../styles/AltFooterStyled';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -42,12 +43,6 @@ export default function Developers(){
         devInfo()
     }, []);
 
-    let tl = gsap.timeline({scrollTrigger: {
-        trigger: ".Benaiah-Varner",
-        start: "top 80%",
-        // scrub: true,
-        toggleActions: "play none none reset"
-    }})
 
     gsap.from(".Benaiah-Varner", {
         scrollTrigger: {
@@ -135,7 +130,19 @@ export default function Developers(){
             }
         </DevContainer>
 </DevDiv>
-<Footer />
+<AltFooterStyled>
+        <div className="social">
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faFacebook}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faTwitter}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faInstagram}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faGithub}/></a>
+        </div>
+        <p>Copyright &copy; 2020 - Co-Make</p>
+    </AltFooterStyled>
 </>
     )
 }

@@ -9,6 +9,12 @@ import StyledButton from '../styles/StyledButton';
 import Footer from './Footer';
 import axios from 'axios';
 
+import AltFooterStyled from '../styles/AltFooterStyled';
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faFacebook, faInstagram, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
+
 const initLoginValues = {
   username: '',
   password: ''
@@ -100,7 +106,7 @@ const Login = () => {
   // / / / / / Above currently returning 401 error - leaving for later use / / / / / //
 
   return (
-    <>
+    <LoginContainer>
       <NavBar />
 
       <LoginDiv>
@@ -138,14 +144,33 @@ const Login = () => {
                   
         </LoginForm>
       </LoginDiv>
-      <Footer />
-    </>
+      <AltFooterStyled>
+        <div className="social">
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faFacebook}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faTwitter}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faInstagram}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faGithub}/></a>
+        </div>
+        <p>Copyright &copy; 2020 - Co-Make</p>
+    </AltFooterStyled>
+    </LoginContainer>
   );
 };
 
 export default Login;
 
 // / / / / / FORM STYLES / / / / / //
+
+const LoginContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: #333;
+  margin-bottom: 0;
+`
 
 const LoginDiv = styled.div`
   padding-top: 4.3%;
