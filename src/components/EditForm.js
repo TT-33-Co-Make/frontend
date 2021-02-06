@@ -53,30 +53,72 @@ function EditForm() {
   }, []);
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="title"
-        value={formValues.title}
-        onChange={handleChange}
-        placeholder={issue.title}
-      />
-
-      <textarea
-        name="description"
-        value={formValues.description}
-        onChange={handleChange}
-        placeholder={issue.description}
-      />
-
-      <StyledButton>Submit</StyledButton>
-    </StyledForm>
+    <>
+      <StyledForm onSubmit={handleSubmit}>
+        <h2 className="formHeader">Make an Issue</h2>
+        <div className="inputs">
+          <input
+            type="text"
+            name="title"
+            value={formValues.title}
+            onChange={handleChange}
+            placeholder={issue.title}
+          />
+          <textarea
+            name="description"
+            value={formValues.description}
+            onChange={handleChange}
+            placeholder={issue.description}
+          />
+        </div>
+        <StyledButton className="button">Submit</StyledButton>
+      </StyledForm>
+    </>
   );
 }
 
 export default EditForm;
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #333333;
+  padding: 4%;
+  width: 100vw;
+  height: 90vh;
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 2px;
+    background-color: #28a745;
+    width: 92%;
+    height: 30%;
+    color: black;
+    padding: 3%;
+    box-shadow: 
+      /* top */ rgba(0, 0, 0, 0.2) 0px -6px 10px,
+      /* right */ rgba(0, 0, 0, 0.2) 6px 0px 10px,
+      /* bottom */ rgba(0, 0, 0, 0.2) 0px 6px 10px,
+      /* left */ rgba(0, 0, 0, 0.2) -6px 0px 10px;
+
+    input {
+      width: 40%;
+      margin-bottom: 2%;
+    }
+
+    textarea {
+      height: 80%;
+      width: 80%;
+      margin-top: 1%;
+    }
+  }
+
+  .button {
+    width: 20%;
+    margin: 1% auto;
+  }
 `;
