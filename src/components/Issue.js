@@ -17,7 +17,7 @@ function Issue() {
     fetchIssue(params.id);
   }, [params.id]);
 
-  // Cant test yet
+  // Impliment this functionality later
   // const deleteIssue = () => {
   //   axiosWithAuth
   //     .delete(`issues/${params.id}`)
