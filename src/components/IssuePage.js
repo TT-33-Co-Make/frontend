@@ -1,52 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import AddForm from './AddForm';
 import IssueList from './IssueList';
 import NavBar from './NavBar';
-import AltFooterStyled from '../styles/AltFooterStyled';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-  faGithub
-} from '@fortawesome/free-brands-svg-icons';
+import Footer from './Footer';
 
 function IssuePage() {
   return (
-    <StyledIssuePage>
-      <div className="navDiv">
-        <NavBar />
-      </div>
-      <h2>List of Issues</h2>
-      <AddForm />
-      <IssueList />
-      <AltFooterStyled>
-        <div className="social">
-          {/*eslint-disable-next-line*/}
-          <a href="#">
-            <FontAwesomeIcon icon={faFacebook} />
-          </a>
-          {/*eslint-disable-next-line*/}
-          <a href="#">
-            <FontAwesomeIcon icon={faTwitter} />
-          </a>
-          {/*eslint-disable-next-line*/}
-          <a href="#">
-            <FontAwesomeIcon icon={faInstagram} />
-          </a>
-          {/*eslint-disable-next-line*/}
-          <a href="#">
-            <FontAwesomeIcon icon={faGithub} />
-          </a>
-        </div>
-        <p>Copyright &copy; 2020 - Co-Make</p>
-      </AltFooterStyled>
-    </StyledIssuePage>
+    <>
+      <NavBar />
+      <StyledIssuePage>
+        <h2>List of Issues</h2>
+        <hr id="titleHr" />
+        <AddForm />
+        <IssueList />
+      </StyledIssuePage>
+      <Footer />
+    </>
   );
 }
 
 export default IssuePage;
 
-const StyledIssuePage = styled.div``;
+const StyledIssuePage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4%;
+  background-color: #333333;
+  height: 90vh;
+
+  #titleHr {
+    width: 92%;
+    margin: 2% auto;
+    background-color: #28a745;
+    height: 6px;
+    border-color: #28a745;
+  }
+  h2 {
+    color: whitesmoke;
+    font-size: 2rem;
+    margin-top: 3%;
+  }
+`;

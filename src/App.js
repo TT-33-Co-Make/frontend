@@ -14,7 +14,7 @@ import { IssuesContext } from './contexts/IssuesContext';
 import Signup from './components/Signup';
 import Home from './components/Home';
 import Login from './components/Login';
-import IssueList from './components/IssueList';
+import IssuePage from './components/IssuePage';
 import EditForm from './components/EditForm';
 import AddForm from './components/AddForm';
 import Developers from './components/Developers';
@@ -67,7 +67,7 @@ function App() {
           value={{ issuesList, getIssuesList, issue, fetchIssue }}
         >
           <Switch>
-            <Route exact path="/issues" component={IssueList} />
+            <Route exact path="/issues" component={IssuePage} />
             <Route path="/issues/:id/edit" component={EditForm} />
             <Route path="/issues/add" component={AddForm} />
             <Route path="/issues/:id" component={Issue} />
