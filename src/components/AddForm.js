@@ -71,7 +71,7 @@ const StyledAddForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   background-color: #333333;
   padding: 1%;
   width: 100vw;
@@ -108,5 +108,15 @@ const StyledAddForm = styled.form`
   .button {
     width: 20%;
     margin: 1% auto;
+  }
+
+  @media (min-width: 1200px) {
+    width: 60vw;
+    height: 50vh;
+    padding: 0;
+
+    .formHeader {
+      margin-top: 0;
+    }
   }
 `;
