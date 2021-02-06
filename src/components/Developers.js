@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
 import NavBar from './NavBar';
 import About from './About';
 import Footer from './Footer';
@@ -8,8 +8,8 @@ import AltFooterStyled from '../styles/AltFooterStyled';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -148,90 +148,85 @@ export default function Developers(){
 }
 
 const Header = styled.h1`
-    width: 100%;
-    text-align: center;
-    color: white;
-    margin-top: 2%;
-`
+  width: 100%;
+  text-align: center;
+  color: white;
+  margin-top: 2%;
+`;
 
 const DevDiv = styled.div`
-    padding-top: 4.3%;
-    background: #333;
+  padding-top: 4.3%;
+  background: #333;
+`;
 
-`
-
-const DevContainer = styled.section`
-    
-`
+const DevContainer = styled.section``;
 
 const DevCard = styled.div`
-    width: 45%;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    margin: 0 auto 3% auto;
-    background: #FFF;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 0 auto 3% auto;
+  background: #fff;
 
+  h1 {
+    width: 100%;
+    text-align: center;
+  }
 
-    h1{
-        width: 100%;
-        text-align: center;
+  &:hover {
+    img {
+      box-shadow: 2px 2px 2px 2px rgba(33, 33, 33, 0.5);
     }
-
-    &:hover{
-        img{
-            box-shadow: 2px 2px 2px 2px rgba(33, 33, 33, 0.5);
-        }
-    }
-`
+  }
+`;
 
 const DevInfo = styled.div`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 25px 0 25px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 25px 0 25px 0;
 
-    img{
-        width: 50%;
-        margin-right: 25px;
-        margin-left: 15px;
-        border-radius: 100%;
-        transition: .3s;
-    }
-`
+  img {
+    width: 50%;
+    margin-right: 25px;
+    margin-left: 15px;
+    border-radius: 100%;
+    transition: 0.3s;
+  }
+`;
 
 const DevText = styled.div`
+  text-align: center;
+  width: 50%;
+
+  p {
     text-align: center;
-    width: 50%;
+  }
 
-    p{
-        text-align: center;
+  a {
+    font-size: 25px;
+    color: black;
+    transition: 0.2s;
+
+    &:hover {
+      color: #28a745;
     }
-
-    a{
-        font-size: 25px;
-        color: black;
-        transition: .2s;
-
-        &:hover{
-            color: #28A745;
-        }
-    }
-`
-
+  }
+`;
 
 // / / / / / CODE GRAVEYARD - TO BE REVIVED / / / / / //
 
 // useEffect(() => {
-    // const temp = [];
-    //     gitInfo.forEach(dev => {
-    //          axios.get(`https://api.github.com/users/${dev}`)
-    //          .then(res => {
-    //              temp.push(res.data);
-    //          })
-    //          .catch(err => {
-    //              console.log(err);
-    //          })
-    //     })
-    //     setDevelopers(temp);
-    // }, [])
+// const temp = [];
+//     gitInfo.forEach(dev => {
+//          axios.get(`https://api.github.com/users/${dev}`)
+//          .then(res => {
+//              temp.push(res.data);
+//          })
+//          .catch(err => {
+//              console.log(err);
+//          })
+//     })
+//     setDevelopers(temp);
+// }, [])
