@@ -8,8 +8,13 @@ import StyledButton from '../styles/StyledButton';
 import IssueCard from './IssueCard';
 import NavBar from './NavBar';
 import AltFooterStyled from '../styles/AltFooterStyled';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFacebook,
+  faInstagram,
+  faTwitter,
+  faGithub
+} from '@fortawesome/free-brands-svg-icons';
 
 function IssuePage() {
   const { issuesList, getIssuesList } = useContext(IssuesContext);
@@ -22,32 +27,16 @@ function IssuePage() {
 
   return (
     <div>
-      <div className="navDiv">
-        <NavBar />
-      </div>
       <StyleIssueList className="issueList">
         <h2>List of Issues</h2>
         <hr id="titleHr" />
-        <StyledButton onClick={() => push('issues/add')}>
+        {/* <StyledButton onClick={() => push('issues/add')}>
           Add An Issue
-        </StyledButton>
+        </StyledButton> */}
         {issuesList.map((issue) => {
-          return <IssueCard key={issue.id} issueId={params.id} />;
+          return <IssueCard key={issue.id} issueId={params.id} issue={issue} />;
         })}
       </StyleIssueList>
-      <AltFooterStyled>
-        <div className="social">
-            {/*eslint-disable-next-line*/ }
-            <a href="#"><FontAwesomeIcon icon={faFacebook}/></a>
-            {/*eslint-disable-next-line*/ }
-            <a href="#"><FontAwesomeIcon icon={faTwitter}/></a>
-            {/*eslint-disable-next-line*/ }
-            <a href="#"><FontAwesomeIcon icon={faInstagram}/></a>
-            {/*eslint-disable-next-line*/ }
-            <a href="#"><FontAwesomeIcon icon={faGithub}/></a>
-        </div>
-        <p>Copyright &copy; 2020 - Co-Make</p>
-    </AltFooterStyled>
     </div>
   );
 }

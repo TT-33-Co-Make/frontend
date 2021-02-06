@@ -11,6 +11,7 @@ import Footer from './Footer';
 
 function Issue() {
   const { issue, fetchIssue } = useContext(IssuesContext);
+  // const [ issues, setIssues ] = useContext(IssuesContext);
   const params = useParams();
 
   useEffect(() => {
