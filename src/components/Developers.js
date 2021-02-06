@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import NavBar from './NavBar';
 import About from './About';
 import Footer from './Footer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import AltFooterStyled from '../styles/AltFooterStyled';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -13,143 +14,137 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const gitInfo = [
-  { gitID: 'benaiah-varner' },
-  { gitID: 'emilyr027' },
-  { gitID: 'paulstgermain' },
-  { gitID: 'oscfig' },
-  { gitID: 'plofland' }
-];
+    {gitID: 'benaiah-varner'},
+    {gitID: 'emilyr027'},
+    {gitID: 'paulstgermain'},
+    {gitID: 'oscfig'},
+    {gitID: 'plofland'}
+]
 
-export default function Developers() {
-  const [developers, setDevelopers] = useState(gitInfo);
 
-  useEffect(() => {
-    const devInfo = async function () {
-      const temp = [...developers];
-      for (let i = 0; i < developers.length; i++) {
-        const { data } = await axios.get(
-          `https://api.github.com/users/${developers[i].gitID}`
-        );
-        temp[i].image = data.avatar_url;
-        temp[i].url = data.html_url;
-        temp[i].bio = data.bio;
-        temp[i].name = data.name;
-        temp[i].login = data.login;
-      }
-      setDevelopers(temp);
-    };
-    devInfo();
-  }, []);
 
-  let tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.Benaiah-Varner',
-      start: 'top 80%',
-      // scrub: true,
-      toggleActions: 'play none none reset'
-    }
-  });
+export default function Developers(){
 
-  gsap.from('.Benaiah-Varner', {
-    scrollTrigger: {
-      trigger: '.Benaiah-Varner',
-      start: 'top 80%',
-      // scrub: true,
-      toggleActions: 'play none none reset'
-    },
-    x: 850,
-    opacity: 0,
-    duration: 2
-  });
+    const [developers, setDevelopers] = useState(gitInfo);
 
-  gsap.from('.emilyr027', {
-    scrollTrigger: {
-      trigger: '.emilyr027',
-      start: 'top 80%',
-      // scrub: true,
-      toggleActions: 'play none none reset'
-    },
-    x: -850,
-    opacity: 0,
-    duration: 2
-  });
+    useEffect(() => {
+        const devInfo = async function(){
+            const temp = [...developers];
+            for(let i = 0; i < developers.length; i++){
+                const {data} = await axios.get(`https://api.github.com/users/${developers[i].gitID}`)
+                temp[i].image = data.avatar_url;
+                temp[i].url = data.html_url;
+                temp[i].bio = data.bio;
+                temp[i].name = data.name;
+                temp[i].login = data.login;
+            }
+            setDevelopers(temp);
+        }
+        devInfo()
+    }, []);
 
-  gsap.from('.paulstgermain', {
-    scrollTrigger: {
-      trigger: '.paulstgermain',
-      start: 'top 80%',
-      // scrub: true,
-      toggleActions: 'play none none reset'
-    },
-    x: 850,
-    opacity: 0,
-    duration: 2
-  });
 
-  gsap.from('.OscFig', {
-    scrollTrigger: {
-      trigger: '.OscFig',
-      start: 'top 80%',
-      // scrub: true,
-      toggleActions: 'play none none reset'
-    },
-    x: -850,
-    opacity: 0,
-    duration: 2
-  });
+    gsap.from(".Benaiah-Varner", {
+        scrollTrigger: {
+            trigger: ".Benaiah-Varner",
+            start: "top 80%",
+            // scrub: true,
+            toggleActions: "play none none reset"
+        },
+        x: 850,
+        opacity: 0,
+        duration: 2
+    });
 
-  gsap.from('.Plofland', {
-    scrollTrigger: {
-      trigger: '.Plofland',
-      start: 'top 80%',
-      // scrub: true,
-      toggleActions: 'play none none reset'
-    },
-    x: 850,
-    opacity: 0,
-    duration: 2
-  });
+    gsap.from(".emilyr027", {
+        scrollTrigger: {
+            trigger:".emilyr027",
+            start: "top 80%",
+            // scrub: true,
+            toggleActions: "play none none reset"
+        },
+        x: -850,
+        opacity: 0,
+        duration: 2
+    });
 
-  return (
-    <>
-      <NavBar />
+    gsap.from(".paulstgermain", {
+        scrollTrigger: {
+            trigger: ".paulstgermain",
+            start: "top 80%",
+            // scrub: true,
+            toggleActions: "play none none reset"
+        },
+        x: 850,
+        opacity: 0,
+        duration: 2
+    });
 
-      <DevDiv>
-        <About />
-        <Header>Meet the Team!</Header>
-                
-        <DevContainer>
-          {developers.map((dev) => {
-            return (
-              <DevCard className={dev.login}>
-                <h1>{dev.name === null ? dev.login : dev.name}</h1>
-                <DevInfo
-                  style={{ flexDirection: dev.bio === null ? 'column' : 'row' }}
-                >
-                  <img src={dev.image} alt={dev.name}></img>
-                  <DevText>
-                    {dev.bio === null ? (
-                      ''
-                    ) : (
-                      <>
-                        <h3>Bio:</h3>
-                        <p>{dev.bio}</p>
-                      </>
-                    )}
-                    <a href={dev.url}>
-                      <FontAwesomeIcon icon={faGithub} className="i" />
-                    </a>
-                  </DevText>
-                </DevInfo>
-              </DevCard>
-            );
-          })}
-                  
-        </DevContainer>
-      </DevDiv>
-      <Footer />
-    </>
-  );
+    gsap.from(".OscFig", {
+        scrollTrigger: {
+            trigger:".OscFig",
+            start: "top 80%",
+            // scrub: true,
+            toggleActions: "play none none reset"
+        },
+        x: -850,
+        opacity: 0,
+        duration: 2
+    });
+
+    gsap.from(".Plofland", {
+        scrollTrigger: {
+            trigger: ".Plofland",
+            start: "top 80%",
+            // scrub: true,
+            toggleActions: "play none none reset"
+        },
+        x: 850,
+        opacity: 0,
+        duration: 2
+    });
+
+    return(
+<>
+    <NavBar />
+
+<DevDiv>
+<About />
+    <Header>Meet the Team!</Header>
+        <DevContainer>
+            {
+                developers.map(dev => {
+                    return (
+                    <DevCard className={dev.login}>
+                        <h1>{dev.name === null ? dev.login : dev.name}</h1>
+                        <DevInfo style={{flexDirection: dev.bio === null ? 'column' : 'row'}}>
+                            <img src={dev.image} alt={dev.name}></img>
+                            <DevText>
+                                {dev.bio === null ? '' : <><h3>Bio:</h3><p>{dev.bio}</p></>}
+                                <a href={dev.url}><FontAwesomeIcon icon={faGithub} className='i'/></a>
+                            </DevText>
+                        </DevInfo>
+                    </DevCard>
+                    )
+                })
+            }
+        </DevContainer>
+</DevDiv>
+<AltFooterStyled>
+        <div className="social">
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faFacebook}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faTwitter}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faInstagram}/></a>
+            {/*eslint-disable-next-line*/ }
+            <a href="#"><FontAwesomeIcon icon={faGithub}/></a>
+        </div>
+        <p>Copyright &copy; 2020 - Co-Make</p>
+    </AltFooterStyled>
+</>
+    )
 }
 
 const Header = styled.h1`
