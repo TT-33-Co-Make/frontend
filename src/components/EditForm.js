@@ -83,11 +83,11 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: #333333;
-  padding: 4%;
+  padding: 1%;
   width: 100vw;
-  height: 90vh;
+  height: 40vh;
 
   .inputs {
     display: flex;
@@ -96,7 +96,7 @@ export const StyledForm = styled.form`
     border-radius: 2px;
     background-color: #28a745;
     width: 92%;
-    height: 30%;
+    height: 50%;
     color: black;
     padding: 3%;
     box-shadow: 

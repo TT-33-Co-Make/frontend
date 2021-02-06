@@ -11,13 +11,14 @@ import Footer from './Footer';
 
 function Issue() {
   const { issue, fetchIssue } = useContext(IssuesContext);
+  // const [ issues, setIssues ] = useContext(IssuesContext);
   const params = useParams();
 
   useEffect(() => {
     fetchIssue(params.id);
   }, [params.id]);
 
-  // Cant test yet
+  // Impliment this functionality later
   // const deleteIssue = () => {
   //   axiosWithAuth
   //     .delete(`issues/${params.id}`)
