@@ -38,22 +38,23 @@ function AddForm() {
     <>
       <NavBar />
       <StyledForm onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          value={newIssueValues.title}
-          placeholder={'Title of Issue'}
-          onChange={handleChange}
-        />
-        <textarea
-          name="description"
-          value={newIssueValues.description}
-          placeholder={'Description of Issue'}
-          onChange={handleChange}
-          // rows="4"
-          // cols="50"
-        />
-        <StyledButton>Submit</StyledButton>
+        <div className="inputs">
+          <h2 className="formHeader">Add an Issue</h2>
+          <input
+            type="text"
+            name="title"
+            value={newIssueValues.title}
+            placeholder={'Title of Issue'}
+            onChange={handleChange}
+          />
+          <textarea
+            name="description"
+            value={newIssueValues.description}
+            placeholder={'Description of Issue'}
+            onChange={handleChange}
+          />
+          <StyledButton className="button">Submit</StyledButton>
+        </div>
       </StyledForm>
       <Footer />
     </>

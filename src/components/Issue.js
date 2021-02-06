@@ -49,7 +49,7 @@ function Issue() {
 
 export default Issue;
 
-const StyledIssue = styled.div`
+export const StyledIssue = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
