@@ -1,4 +1,8 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useContext
+} from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { IssuesContext } from '../contexts/IssuesContext';
 import axiosWithAuth from '../utils/axiosWithAuth';
@@ -40,7 +44,10 @@ function EditForm() {
       });
   };
 
+
   //Some commented out code
+
+
 
   useEffect(() => {
     axiosWithAuth()
@@ -73,7 +80,9 @@ function EditForm() {
             placeholder={issue.description}
           />
         </div>
-        <StyledButton className="button">Submit</StyledButton>
+        <StyledButton className="button">
+          Submit
+        </StyledButton>
       </StyledForm>
     </>
   );
