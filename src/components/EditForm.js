@@ -40,6 +40,8 @@ function EditForm() {
       });
   };
 
+  //Some commented out code
+
   useEffect(() => {
     axiosWithAuth()
       .get(`issues/${id}`)
